@@ -1,4 +1,4 @@
-package com.example.hubert.application_arbitre;
+package com.example.hubert.app_arbitre;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.hubert.application_arbitre", appContext.getPackageName());
+        assertEquals("com.example.hubert.app_arbitre", appContext.getPackageName());
     }
 }

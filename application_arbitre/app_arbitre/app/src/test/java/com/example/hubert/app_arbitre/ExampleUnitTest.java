@@ -1,4 +1,4 @@
-package com.example.hubert.application_arbitre;
+package com.example.hubert.app_arbitre;
 
 import org.junit.Test;
 
