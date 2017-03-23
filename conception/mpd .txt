@@ -1,0 +1,2 @@
+mdp Switch : cnun-5wna-tsqn
+BDD : mdp : appli_foot
