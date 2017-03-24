@@ -1,0 +1,4 @@
+tournoi:
+    resource: "@TournoiBundle/Resources/config/routing.yml"
+    prefix:   /
+

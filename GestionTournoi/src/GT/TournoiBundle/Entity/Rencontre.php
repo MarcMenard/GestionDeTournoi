@@ -1,0 +1,161 @@
+<?php
+
+namespace GT\TournoiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Rencontre
+ *
+ * @ORM\Table(name="rencontre")
+ * @ORM\Entity(repositoryClass="GT\TournoiBundle\Repository\RencontreRepository")
+ */
+class Rencontre
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="terrain", type="string", length=45)
+     */
+    private $terrain;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="rang_planning", type="integer")
+     */
+    private $rangPlanning;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure", type="datetime")
+     */
+    private $heure;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="type_match", type="integer")
+     */
+    private $typeMatch;
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set terrain
+     *
+     * @param string $terrain
+     *
+     * @return Rencontre
+     */
+    public function setTerrain($terrain)
+    {
+        $this->terrain = $terrain;
+
+        return $this;
+    }
+
+    /**
+     * Get terrain
+     *
+     * @return string
+     */
+    public function getTerrain()
+    {
+        return $this->terrain;
+    }
+
+    /**
+     * Set rangPlanning
+     *
+     * @param integer $rangPlanning
+     *
+     * @return Rencontre
+     */
+    public function setRangPlanning($rangPlanning)
+    {
+        $this->rangPlanning = $rangPlanning;
+
+        return $this;
+    }
+
+    /**
+     * Get rangPlanning
+     *
+     * @return int
+     */
+    public function getRangPlanning()
+    {
+        return $this->rangPlanning;
+    }
+
+    /**
+     * Set heure
+     *
+     * @param \DateTime $heure
+     *
+     * @return Rencontre
+     */
+    public function setHeure($heure)
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+
+    /**
+     * Get heure
+     *
+     * @return \DateTime
+     */
+    public function getHeure()
+    {
+        return $this->heure;
+    }
+
+    /**
+     * Set typeMatch
+     *
+     * @param integer $typeMatch
+     *
+     * @return Rencontre
+     */
+    public function setTypeMatch($typeMatch)
+    {
+        $this->typeMatch = $typeMatch;
+
+        return $this;
+    }
+
+    /**
+     * Get typeMatch
+     *
+     * @return int
+     */
+    public function getTypeMatch()
+    {
+        return $this->typeMatch;
+    }
+
+   
+}

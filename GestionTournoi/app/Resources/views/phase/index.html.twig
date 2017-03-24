@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}    
+    <h1 class="text-primary text-center">Phases</h1>
+
+    <table class="table table-striped">
+        <tbody>
+        {% for phase in phases %}
+            <tr>
+                <td><a href="{{ path('Phases_show', { 'id': phase.id }) }}"></a></td>
+                <td>{{ phase.nom }}</td>
+                <td>
+                    <div class="btn">
+                            <a href="{{ path('Phases_show', { 'id': phase.id }) }}" class="btn btn-primary">VOIR</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            <a href="{{ path('Phases_new') }}" class="text-center" class="btn-primary">Créer une nouvelle phase</a>
+{% endblock %}

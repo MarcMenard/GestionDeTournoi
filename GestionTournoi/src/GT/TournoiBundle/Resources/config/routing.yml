@@ -1,0 +1,11 @@
+tournoi_Phases:
+    resource: "@TournoiBundle/Resources/config/routing/phase.yml"
+    prefix:   /Phases
+    
+tournoi_Groupes:
+    resource: "@TournoiBundle/Resources/config/routing/groupe.yml"
+    prefix:   /Groupes
+
+tournoi_homepage:
+    path:     /
+    defaults: { _controller: TournoiBundle:Default:index }
