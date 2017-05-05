@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
     private static final int DIALOG_ALERT = 10;
 
     public void onClick(View view) {
@@ -95,6 +94,9 @@ public class MainActivity extends AppCompatActivity
 
                 Button btn = (Button) findViewById(R.id.start_button);
                 btn.setEnabled(true);
+
+                Button btn1 = (Button) findViewById(R.id.stop_button);
+                btn1.setEnabled(true);
             }
 
             if (message == "Voulez vous vraiment mettre le temps en pause ?" )
@@ -110,6 +112,10 @@ public class MainActivity extends AppCompatActivity
 
                     Button btn = (Button) findViewById(R.id.start_button);
                     btn.setEnabled(true);
+
+                    Button btn1 = (Button) findViewById(R.id.stop_button);
+                    btn1.setEnabled(false);
+
                 }
             }
 
@@ -121,6 +127,7 @@ public class MainActivity extends AppCompatActivity
                 foulsTeamB = 0;
                 displayGoalsTeamA(goalsTeamA);
                 displayGoalsTeamB(goalsTeamB);
+
             }
 
             if (message == "Donner un point à cette équipe ?")
@@ -138,17 +145,21 @@ public class MainActivity extends AppCompatActivity
             if (message == "Enlever un point à cette équipe ?")
             {
                 goalsTeamA -= 1;
-                displayGoalsTeamA(goalsTeamA);
                 if (goalsTeamA <= 0)
-                { goalsTeamA = 1; }
+                {
+                    goalsTeamA = 0;
+                }
+                displayGoalsTeamA(goalsTeamA);
             }
 
             if (message == "Enlever un point à cette Team ?")
             {
                 goalsTeamB -= 1;
+                if (goalsTeamB <= 0)
+                {
+                    goalsTeamB = 0;
+                }
                 displayGoalsTeamB(goalsTeamB);
-                if (goalsTeamB <= 0 )
-                { goalsTeamB = 1; }
             }
         }
     }
@@ -184,12 +195,14 @@ public class MainActivity extends AppCompatActivity
 
         Button btn = (Button) findViewById(R.id.start_button);
         btn.setEnabled(false);
+
+        Button btn1 = (Button) findViewById(R.id.stop_button);
+        btn1.setEnabled(true);
     }
 
     // the method for when we press the 'stop' button
     public void stopButtonClick(View v)
     {
-
         message = "Voulez vous vraiment mettre le temps en pause ?";
         message2 = "Le chronomètre continue !";
         showDialog(DIALOG_ALERT);
@@ -225,10 +238,9 @@ public class MainActivity extends AppCompatActivity
      */
     public void addGoalForTeamA(View view)
     {
-
-        showDialog(DIALOG_ALERT);
         message = "Donner un point à cette équipe ?";
-        message2 = "+1 Point";
+        message2 = "Point Inchangés";
+        showDialog(DIALOG_ALERT);
 
     }
 
@@ -238,9 +250,9 @@ public class MainActivity extends AppCompatActivity
     public void addGoalForTeamB(View view)
     {
 
-        showDialog(DIALOG_ALERT);
         message = "Donner un point à cette Team ?";
-        message2 = "+1 Point";
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
     /**
@@ -248,11 +260,9 @@ public class MainActivity extends AppCompatActivity
      */
     public void addFoulForTeamA(View view)
     {
-
-        showDialog(DIALOG_ALERT);
         message = "Enlever un point à cette équipe ?";
-        message2 = "-1 Point";
-
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
     /**
@@ -260,11 +270,9 @@ public class MainActivity extends AppCompatActivity
      */
     public void addFoulForTeamB(View view)
     {
-
-        showDialog(DIALOG_ALERT);
         message = "Enlever un point à cette Team ?";
-        message2 = "-1 Point";
-
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
     /**
