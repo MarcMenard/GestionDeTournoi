@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hubert.app_arbitre.MainActivity">
+
+
+    <LinearLayout
+        android:background="#FF7F50"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Team A"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/goals_teamA"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/goals_teamA"
+            android:textColor="#000000"
+            android:textSize="45sp" />
+
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:onClick="addGoalForTeamA"
+            android:text="+1 But"
+            android:id="@+id/button4" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:onClick="addFoulForTeamA"
+            android:text="-1 But"
+            android:id="@+id/button" />
+    </LinearLayout>
+
+
+    <Chronometer
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.19"
+        android:id="@+id/chronometer"
+        android:text="Large Text"
+        android:textColor="#000000"
+        android:textSize="100dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.23"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/hmsTekst"
+        android:textColor="#EEEEEE"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+                android:layout_gravity="center"
+               android:layout_width="200dp"
+               android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+               android:text="Start"
+               android:id="@+id/start_button"
+               android:onClick="startButtonClick" />
+
+    <Button
+        android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:text="Pause"
+                android:id="@+id/stop_button"
+                android:onClick="stopButtonClick"
+                android:layout_marginTop="1dp" />
+
+    <Button
+        android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:text="Réinitialiser chrono"
+                android:id="@+id/resetButton"
+                android:onClick="resetButtonClick"/>
+
+    <Button
+            android:layout_gravity="center"
+            android:layout_width="240dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:onClick="clearResults"
+            android:text="Réinitialiser Score"
+            android:id="@+id/button3" />
+
+    <LinearLayout
+                android:background = "#77B5FE"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent">
+
+        <TextView
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="Team B"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView" />
+
+
+        <TextView
+                    android:id="@+id/goals_teamB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.2"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/goals_teamB"
+                    android:textColor="#000000"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="fill_parent"
+                    android:onClick="addGoalForTeamB"
+                    android:text="+1 But"
+                    android:layout_weight="0.2"
+                    android:id="@+id/button2" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.2"
+                    android:onClick="addFoulForTeamB"
+                    android:text="-1 But" />
+
+        </LinearLayout>
+</LinearLayout>

@@ -1,2 +1,18 @@
-mdp Switch : cnun-5wna-tsqn
+MDP sur 192.168.1.1 --> Routeur : cnun-5wna-tsqn   Nom utilisateur : cisco
+
+mdp Router : cnun-5wna-tsqn
 BDD : mdp : appli_foot
+
+clé sécurité routeur : sjml-y1ld-btqs
+
+Ajouter Bouton retirer but
+Séparer l'écran haut/bas une équipe par partie
+mettre le temps au milieu
+
+metre "require all granted" partout à la place de "require local" --> config wampserver
++ le lien dans les favoris
+
+wampserver : ndc : Tournoi
+mdp : appli_foot
+
+nom DNS Tournoi
