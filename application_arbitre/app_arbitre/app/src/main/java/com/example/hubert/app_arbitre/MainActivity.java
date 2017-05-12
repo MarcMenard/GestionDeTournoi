@@ -284,4 +284,23 @@ public class MainActivity extends AppCompatActivity
         message2 = "Les points restent inchangés";
         showDialog(DIALOG_ALERT);
     }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Fermeture de l'activité")
+                .setMessage("Êtes vous sur de fermer l'activité ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Non, noon !", null)
+                .show();
+
+    }
 }

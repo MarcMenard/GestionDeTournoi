@@ -9,25 +9,94 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-public class Planning extends AppCompatActivity {
+public class Planning extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
+        Button[] tab_boutons = new Button[6];
+        tab_boutons[0] = (Button) findViewById(R.id.fab0);
+        tab_boutons[1] = (Button) findViewById(R.id.fab1);
+        tab_boutons[2] = (Button) findViewById(R.id.fab2);
+        tab_boutons[3] = (Button) findViewById(R.id.fab3);
+        tab_boutons[4] = (Button) findViewById(R.id.fab4);
+        tab_boutons[5] = (Button) findViewById(R.id.fab5);
+
+        for(int i = 0; i < 4; i++)
+        {
+            tab_boutons[i].setEnabled(false);
+        }
+
+        tab_boutons[0].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        tab_boutons[1].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        tab_boutons[2].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        tab_boutons[3].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        tab_boutons[4].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        tab_boutons[5].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                Button button=(Button) view;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
-    public void buttonOnClicj(View v) {
-        Button button=(Button) v;
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
+
 }

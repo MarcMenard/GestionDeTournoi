@@ -1,40 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.example.hubert.app_arbitre.Planning">
+    android:orientation="vertical"
+    tools:context="com.example.hubert.app_arbitre.Planning"
+    android:background="@drawable/login_background5">
 
-    <android.support.design.widget.AppBarLayout
+
+    <LinearLayout
+        android:background="#FF7F50"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_marginTop="15dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <Button
+            android:id="@+id/fab0"
+            android:text="Arbitrer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left"
+            android:layout_weight="0.001"/>
 
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team A"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView1" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team B"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="13h30 [Fini]"
+            android:textSize="25sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#FF7F50"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/fab1"
+            android:text="Arbitrer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left"
+            android:layout_weight="0.001"/>/>
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team C"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team D"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView5" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="13h45 [Fini]"
+            android:textSize="25sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#77B5FE"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/fab2"
+            android:text="Arbitrer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.001"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team E"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView7" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team F"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView8" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="14h00 [En Cours]"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView9" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#77B5FE"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp">
+
+    <Button
+        android:id="@+id/fab3"
+        android:text="Arbitrer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@+id/include"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_anchorGravity="center_vertical|right"
-        android:layout_gravity="center_vertical|left" />
+        android:layout_height="fill_parent"
+        android:layout_weight="0.001"
+        android:layout_gravity="left" />
 
-    <include layout="@layout/content_planning"
-        android:id="@+id/include"
-        android:layout_height="match_parent"
-        android:layout_width="217dp" />
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team G"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView10" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team H"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView11" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="14h10 [En Cours]"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#31B404"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp">
+
+    <Button
+        android:id="@+id/fab4"
+        android:text="Arbitrer"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.001"
+        android:layout_gravity="left" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team I"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team J"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView14" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="14h20"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView15" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#31B404"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/fab5"
+            android:text="Arbitrer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.001"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team K"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView16" />
+
+        <TextView
+            android:background="@drawable/rectangle"
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Team L"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView17" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="14h20"
+            android:textSize="20sp"
+            android:layout_width="150dp"
+            android:id="@+id/textView18" />
+
+    </LinearLayout>
+
+    </LinearLayout>
