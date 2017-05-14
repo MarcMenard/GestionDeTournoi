@@ -87,18 +87,16 @@ public class MainActivity extends AppCompatActivity
 
             //Change de page a un temps donné !!!!!!!
 
-            
+
             chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:05")) //Mettre le temps que l'on veut
+                    if (currentTime.equals("00:10")) //Mettre le temps que l'on veut
                     {
-                        startActivity(new Intent(getApplicationContext(), Planning.class));
-                        chronometer.stop();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
                     }
                 }});
-
 
 
 

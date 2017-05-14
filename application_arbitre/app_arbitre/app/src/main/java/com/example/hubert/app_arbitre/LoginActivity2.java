@@ -3,8 +3,10 @@ package com.example.hubert.app_arbitre;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -16,6 +18,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -25,6 +28,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -41,7 +45,75 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor>
+{
+
+    private Chronometer chronometer;
+
+
+    private java.lang.String message;
+    private java.lang.String message2;
+
+    private static final int DIALOG_ALERT = 10;
+
+    public void onClick(View view) {
+        showDialog(DIALOG_ALERT);
+    }
+
+
+
+
+
+    protected Dialog onCreateDialog(int id)
+    {
+
+        switch (id)
+        {
+            case DIALOG_ALERT:
+                // Create out AlterDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage (message);
+                builder.setCancelable(true);
+                builder.setPositiveButton("Oui", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        }
+        return super.onCreateDialog(id);
+    }
+
+
+    private final class OkOnClickListener implements
+            DialogInterface.OnClickListener
+    {
+        public void onClick(DialogInterface dialog, int which)
+        {
+            message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
+            chronometer.start();
+
+            //Change de page a un temps donné !!!!!!!
+
+
+            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                public void onChronometerTick(Chronometer chronometer) {
+                    String currentTime = chronometer.getText().toString();
+                    if (currentTime.equals("00:25")) //Mettre le temps que l'on veut
+                    {
+                        startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
+                    }
+                }
+            });
+
+            if (message == "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores")
+            {
+
+            }
+
+        }
+    }
+
+
+
+
 
     /**
      * Id to identity READ_CONTACTS permission request.
