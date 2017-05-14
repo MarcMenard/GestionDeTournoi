@@ -2,6 +2,7 @@ package com.example.hubert.app_arbitre;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
@@ -13,8 +14,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.contextClickable;
 import static android.R.attr.x;
+import static android.R.id.content;
 import static com.example.hubert.app_arbitre.R.id.button;
+import static com.example.hubert.app_arbitre.R.id.hmsTekst;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -25,14 +29,12 @@ public class MainActivity extends AppCompatActivity
     private int foulsTeamB = 0;
 
     private long timeWhenStopped = 0;
-    private boolean stopClicked;
+    private boolean stopClicked = true;
     private Chronometer chronometer;
+
 
     private java.lang.String message;
     private java.lang.String message2;
-
-
-
 
     private static final int DIALOG_ALERT = 10;
 
@@ -42,9 +44,11 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
     @Override
     protected Dialog onCreateDialog(int id)
     {
+
         switch (id)
         {
             case DIALOG_ALERT:
@@ -79,9 +83,30 @@ public class MainActivity extends AppCompatActivity
     {
         public void onClick(DialogInterface dialog, int which)
         {
+
+
+            //Change de page a un temps donné !!!!!!!
+
+            
+            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                public void onChronometerTick(Chronometer chronometer)
+                {
+                    String currentTime = chronometer.getText().toString();
+                    if (currentTime.equals("00:05")) //Mettre le temps que l'on veut
+                    {
+                        startActivity(new Intent(getApplicationContext(), Planning.class));
+                        chronometer.stop();
+                    }
+                }});
+
+
+
+
+
+
             if (message == "Êtes vous sur de remettre le temps à 0 ?")
             {
-                TextView secondsText = (TextView) findViewById(R.id.hmsTekst);
+                TextView secondsText = (TextView) findViewById(hmsTekst);
                 timeWhenStopped = chronometer.getBase() - SystemClock.elapsedRealtime();
                 int seconds = (int) timeWhenStopped / 1000;
                 secondsText.setText(Math.abs(seconds) + " seconds");
@@ -91,33 +116,36 @@ public class MainActivity extends AppCompatActivity
                 chronometer.setBase(SystemClock.elapsedRealtime());
                 timeWhenStopped = 0;
                 secondsText.setText("0 seconds");
-
-                Button btn = (Button) findViewById(R.id.start_button);
-                btn.setEnabled(true);
-
-                Button btn1 = (Button) findViewById(R.id.stop_button);
-                btn1.setEnabled(true);
             }
+
+
+            if (message == "Lancer le chronomètre ?")
+            {
+                if (stopClicked)
+                {
+
+                    chronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+                    chronometer.start();
+                    stopClicked = false;
+
+                }
+
+            }
+
 
             if (message == "Voulez vous vraiment mettre le temps en pause ?" )
             {
                 if (!stopClicked)
                 {
-                    TextView secondsText = (TextView) findViewById(R.id.hmsTekst);
+                    TextView secondsText = (TextView) findViewById(hmsTekst);
                     timeWhenStopped = chronometer.getBase() - SystemClock.elapsedRealtime();
                     int seconds = (int) timeWhenStopped / 1000;
                     secondsText.setText( Math.abs(seconds) + " seconds");
                     chronometer.stop();
                     stopClicked = true;
-
-                    Button btn = (Button) findViewById(R.id.start_button);
-                    btn.setEnabled(true);
-
-                    Button btn1 = (Button) findViewById(R.id.stop_button);
-                    btn1.setEnabled(false);
-
                 }
             }
+
 
             if (message == "Voulez vous remettre le score à 0 ?")
             {
@@ -161,12 +189,9 @@ public class MainActivity extends AppCompatActivity
                 }
                 displayGoalsTeamB(goalsTeamB);
             }
+
         }
     }
-
-
-
-
 
 
     @Override
@@ -189,26 +214,21 @@ public class MainActivity extends AppCompatActivity
     // the method for when we press the 'start' button
     public void startButtonClick(View v)
     {
-            chronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
-            chronometer.start();
-            stopClicked = false;
+        TextView secondsText = (TextView) findViewById(hmsTekst);
+        if (stopClicked)
+        {
+            message = "Lancer le chronomètre ?";
+            message2 = "Donc rester en pause..";
+            showDialog(DIALOG_ALERT);
+        }
 
-        Button btn = (Button) findViewById(R.id.start_button);
-        btn.setEnabled(false);
-
-        Button btn1 = (Button) findViewById(R.id.stop_button);
-        btn1.setEnabled(true);
+        if (!stopClicked)
+        {
+            message = "Voulez vous vraiment mettre le temps en pause ?";
+            message2 = "Le chronomètre continue !";
+            showDialog(DIALOG_ALERT);
+        }
     }
-
-    // the method for when we press the 'stop' button
-    public void stopButtonClick(View v)
-    {
-        message = "Voulez vous vraiment mettre le temps en pause ?";
-        message2 = "Le chronomètre continue !";
-        showDialog(DIALOG_ALERT);
-    }
-
-
 
     /**
      * Displays the given goals for Team A.
@@ -303,4 +323,5 @@ public class MainActivity extends AppCompatActivity
                 .show();
 
     }
+
 }

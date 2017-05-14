@@ -70,40 +70,38 @@
     <TextView
         android:layout_gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.23"
+        android:layout_height="78dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/hmsTekst"
         android:textColor="#EEEEEE"
         android:layout_centerHorizontal="true" />
 
-    <Button
-                android:layout_gravity="center"
-               android:layout_width="200dp"
-               android:layout_height="fill_parent"
-                android:layout_weight="0.2"
-               android:text="Start"
-               android:id="@+id/start_button"
-               android:onClick="startButtonClick" />
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent">
 
     <Button
-        android:layout_gravity="center"
+        android:text="Start/Pause"
+                android:layout_gravity="center"
                 android:layout_width="200dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.2"
-                android:text="Pause"
-                android:id="@+id/stop_button"
-                android:onClick="stopButtonClick"
-                android:layout_marginTop="1dp" />
+                android:id="@+id/start_button"
+                android:onClick="startButtonClick" />
+
 
     <Button
-        android:layout_gravity="center"
+                android:layout_gravity="center"
                 android:layout_width="200dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.2"
                 android:text="Réinitialiser chrono"
                 android:id="@+id/resetButton"
                 android:onClick="resetButtonClick"/>
+
+    </LinearLayout>
 
     <Button
             android:layout_gravity="center"
