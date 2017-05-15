@@ -54,6 +54,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     private int goalsTeamA = MainActivity.GetgoalsTeamA();
     private int goalsTeamB = MainActivity.GetgoalsTeamB();
 
+    private String textTeamA = MainActivity.GettextTeamA();
+    private String textTeamB = MainActivity.GettextTeamB();
 
     private Chronometer chronometer;
 
@@ -69,6 +71,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     {
         showDialog(DIALOG_ALERT);
     }
+
     private boolean premiermessage =true;
     private boolean synchroniseA = true;
     private boolean synchroniseB = true;
@@ -115,6 +118,38 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             if (message == "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores")
             {
                 chronometer.start();
+            }
+
+            if (message == "Donner un point à cette équipe ?")
+            {
+                goalsTeamA += 1;
+                displayGoalsTeamA(goalsTeamA);
+            }
+
+            if (message == "Donner un point à cette Team ?")
+            {
+                goalsTeamB += 1;
+                displayGoalsTeamB(goalsTeamB);
+            }
+
+            if (message == "Enlever un point à cette équipe ?")
+            {
+                goalsTeamA -= 1;
+                if (goalsTeamA <= 0)
+                {
+                    goalsTeamA = 0;
+                }
+                displayGoalsTeamA(goalsTeamA);
+            }
+
+            if (message == "Enlever un point à cette Team ?")
+            {
+                goalsTeamB -= 1;
+                if (goalsTeamB <= 0)
+                {
+                    goalsTeamB = 0;
+                }
+                displayGoalsTeamB(goalsTeamB);
             }
 
         }
@@ -532,8 +567,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
     public void addGoalForTeamA(View view)
     {
-        goalsTeamA += 1;
-        displayGoalsTeamA(goalsTeamA);
+        message = "Donner un point à cette équipe ?";
+        message2 = "Point Inchangés";
+        showDialog(DIALOG_ALERT);
 
     }
 
@@ -543,8 +579,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     public void addGoalForTeamB(View view)
     {
 
-        goalsTeamB += 1;
-        displayGoalsTeamB(goalsTeamB);
+        message = "Donner un point à cette Team ?";
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
     /**
@@ -552,12 +589,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      */
     public void addFoulForTeamA(View view)
     {
-        goalsTeamA -= 1;
-        if (goalsTeamA <= 0)
-        {
-            goalsTeamA = 0;
-        }
-        displayGoalsTeamA(goalsTeamA);
+        message = "Enlever un point à cette équipe ?";
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
     /**
@@ -565,12 +599,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      */
     public void addFoulForTeamB(View view)
     {
-        goalsTeamB -= 1;
-        if (goalsTeamB <= 0)
-        {
-            goalsTeamB = 0;
-        }
-        displayGoalsTeamB(goalsTeamB);
+        message = "Enlever un point à cette Team ?";
+        message2 = "Points Inchangés";
+        showDialog(DIALOG_ALERT);
     }
 
 }

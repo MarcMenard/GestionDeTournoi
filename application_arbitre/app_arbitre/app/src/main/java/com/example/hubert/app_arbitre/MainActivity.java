@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity
     private static int goalsTeamA = 0;
     private static int goalsTeamB = 0;
 
+    private static String textTeamA;
+    private static String textTeamB;
+
 
     private long timeWhenStopped = 0;
     private boolean stopClicked = true;
@@ -47,6 +50,18 @@ public class MainActivity extends AppCompatActivity
     {
         return goalsTeamB;
     }
+
+    public static String GettextTeamA()
+    {
+        return textTeamA;
+    }
+
+    public static String GettextTeamB()
+    {
+        return textTeamB;
+    }
+
+
 
     public void onClick(View view) {
         showDialog(DIALOG_ALERT);
@@ -255,6 +270,23 @@ public class MainActivity extends AppCompatActivity
         TextView goalsView = (TextView) findViewById(R.id.goals_teamB);
         goalsView.setText(String.valueOf(goals));
     }
+
+
+
+
+    private void displaytextTeamA(String text)
+    {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(String.valueOf(text));
+    }
+
+
+    private void displaytextTeamB(String text)
+    {
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(String.valueOf(text));
+    }
+
 
     /**
      * Displays the given fouls for Team A.
