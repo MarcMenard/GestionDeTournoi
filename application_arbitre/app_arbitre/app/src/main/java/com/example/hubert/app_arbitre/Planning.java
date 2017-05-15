@@ -8,13 +8,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import static com.example.hubert.app_arbitre.R.id.text;
+import static com.example.hubert.app_arbitre.R.id.textView;
+
+
+
 
 public class Planning extends AppCompatActivity
 {
+    private boolean synchroniseC = true;
+    private boolean synchroniseD = true;
+
+    private static String textTeamA = GettextTeamA();
+    private static String textTeamB = GettextTeamB();
+
+
+    public static String GettextTeamA(){return textTeamA;}
+    public static String GettextTeamB() {return textTeamB;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        while (synchroniseC == true)
+        {
+            textTeamA = "1";
+            //displayTextTeamA(textTeamA);
+            synchroniseC = false;
+        }
+
+
+        while (synchroniseD == true)
+        {
+            textTeamB = "2";
+            //displayTextTeamB(textTeamB);
+            synchroniseD = false;
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
@@ -98,5 +128,25 @@ public class Planning extends AppCompatActivity
             }
         });
     }
+
+    public void resetButtonClick(View v)
+    {
+        textTeamA = "1";
+        displayTextTeamA(textTeamA);
+    }
+
+
+    private void displayTextTeamA(String text)
+    {
+        TextView TextView = (TextView) findViewById(R.id.textView13);
+        TextView.setText(String.valueOf(text));
+    }
+
+
+ /*   private void displayTextTeamB(String text)
+    {
+        TextView TextView = (TextView) findViewById(R.id.textView14);
+        TextView.setText(String.valueOf(text));
+    }*/
 
 }

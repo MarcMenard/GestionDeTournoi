@@ -22,12 +22,14 @@ import static com.example.hubert.app_arbitre.R.id.hmsTekst;
 
 public class MainActivity extends AppCompatActivity
 {
+    private boolean synchroniseC = true;
+    private boolean synchroniseD = true;
 
     private static int goalsTeamA = 0;
     private static int goalsTeamB = 0;
 
-    private static String textTeamA;
-    private static String textTeamB;
+    private static String textTeamA = Planning.GettextTeamA();
+    private static String textTeamB = Planning.GettextTeamB();
 
 
     private long timeWhenStopped = 0;
@@ -41,11 +43,12 @@ public class MainActivity extends AppCompatActivity
     private static final int DIALOG_ALERT = 10;
 
 
+
+
     public static int GetgoalsTeamA()
     {
         return goalsTeamA;
     }
-
     public static int GetgoalsTeamB()
     {
         return goalsTeamB;
@@ -55,7 +58,6 @@ public class MainActivity extends AppCompatActivity
     {
         return textTeamA;
     }
-
     public static String GettextTeamB()
     {
         return textTeamB;
@@ -223,6 +225,20 @@ public class MainActivity extends AppCompatActivity
         chronometer = (Chronometer) findViewById(R.id.chronometer);
 
 
+        while (synchroniseC == true)
+        {
+            displayTextTeamA(textTeamA);
+            synchroniseC = false;
+        }
+
+        while (synchroniseD == true)
+        {
+            displayTextTeamB(textTeamB);
+            synchroniseD = false;
+        }
+
+
+
     }
 
     // the method for when we press the 'reset' button
@@ -274,14 +290,14 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void displaytextTeamA(String text)
+    private void displayTextTeamA(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(String.valueOf(text));
     }
 
 
-    private void displaytextTeamB(String text)
+    private void displayTextTeamB(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView2);
         textView.setText(String.valueOf(text));

@@ -50,7 +50,6 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 {
 
 
-
     private int goalsTeamA = MainActivity.GetgoalsTeamA();
     private int goalsTeamB = MainActivity.GetgoalsTeamB();
 
@@ -73,8 +72,12 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
     private boolean premiermessage =true;
+
     private boolean synchroniseA = true;
     private boolean synchroniseB = true;
+
+    private boolean synchroniseC = true;
+    private boolean synchroniseD = true;
 
     protected Dialog onCreateDialog(int id)
     {
@@ -209,6 +212,23 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             displayGoalsTeamB(goalsTeamB);
             synchroniseB = false;
         }
+
+
+
+        while (synchroniseC == true)
+        {
+            displayTextTeamA(textTeamA);
+            synchroniseC = false;
+        }
+
+        while (synchroniseD == true)
+        {
+            displayTextTeamB(textTeamB);
+            synchroniseD = false;
+        }
+
+
+
 
         while(premiermessage == true)
         {
@@ -563,6 +583,20 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         TextView goalsView = (TextView) findViewById(R.id.goals_teamB);
         goalsView.setText(String.valueOf(goals));
     }
+
+    private void displayTextTeamA(String text)
+    {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(String.valueOf(text));
+    }
+
+
+    private void displayTextTeamB(String text)
+    {
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(String.valueOf(text));
+    }
+
 
 
     public void addGoalForTeamA(View view)
