@@ -25,29 +25,24 @@ public class Planning extends AppCompatActivity
     private static String textTeamB = GettextTeamB();
 
 
-    public static String GettextTeamA(){return textTeamA;}
-    public static String GettextTeamB() {return textTeamB;}
+    public static String GettextTeamA(){textTeamA = "Team X"; return textTeamA;}
+    public static String GettextTeamB() {textTeamB = "Team Y"; return textTeamB;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        while (synchroniseC == true)
-        {
-            textTeamA = "1";
+
+           // Changetexteéquipe();
             //displayTextTeamA(textTeamA);
-            synchroniseC = false;
-        }
-
-
-        while (synchroniseD == true)
-        {
-            textTeamB = "2";
-            //displayTextTeamB(textTeamB);
-            synchroniseD = false;
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
+
+
+            displayTextTeamB(textTeamB);
+            displayTextTeamA(textTeamA);
+
+
 
         Button[] tab_boutons = new Button[6];
         tab_boutons[0] = (Button) findViewById(R.id.fab0);
@@ -129,11 +124,7 @@ public class Planning extends AppCompatActivity
         });
     }
 
-    public void resetButtonClick(View v)
-    {
-        textTeamA = "1";
-        displayTextTeamA(textTeamA);
-    }
+
 
 
     private void displayTextTeamA(String text)
@@ -143,10 +134,10 @@ public class Planning extends AppCompatActivity
     }
 
 
- /*   private void displayTextTeamB(String text)
+    private void displayTextTeamB(String text)
     {
         TextView TextView = (TextView) findViewById(R.id.textView14);
         TextView.setText(String.valueOf(text));
-    }*/
+    }
 
 }

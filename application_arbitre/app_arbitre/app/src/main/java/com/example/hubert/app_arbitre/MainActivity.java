@@ -237,8 +237,6 @@ public class MainActivity extends AppCompatActivity
             synchroniseD = false;
         }
 
-
-
     }
 
     // the method for when we press the 'reset' button
