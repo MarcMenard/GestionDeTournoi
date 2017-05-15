@@ -23,10 +23,9 @@ import static com.example.hubert.app_arbitre.R.id.hmsTekst;
 public class MainActivity extends AppCompatActivity
 {
 
-    private int goalsTeamA = 0;
-    private int goalsTeamB = 0;
-    private int foulsTeamA = 0;
-    private int foulsTeamB = 0;
+    private static int goalsTeamA = 0;
+    private static int goalsTeamB = 0;
+
 
     private long timeWhenStopped = 0;
     private boolean stopClicked = true;
@@ -37,6 +36,17 @@ public class MainActivity extends AppCompatActivity
     private java.lang.String message2;
 
     private static final int DIALOG_ALERT = 10;
+
+
+    public static int GetgoalsTeamA()
+    {
+        return goalsTeamA;
+    }
+
+    public static int GetgoalsTeamB()
+    {
+        return goalsTeamB;
+    }
 
     public void onClick(View view) {
         showDialog(DIALOG_ALERT);
@@ -149,8 +159,6 @@ public class MainActivity extends AppCompatActivity
             {
                 goalsTeamA = 0;
                 goalsTeamB = 0;
-                foulsTeamA = 0;
-                foulsTeamB = 0;
                 displayGoalsTeamA(goalsTeamA);
                 displayGoalsTeamB(goalsTeamB);
 
@@ -198,6 +206,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
+
+
     }
 
     // the method for when we press the 'reset' button

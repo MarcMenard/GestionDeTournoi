@@ -49,6 +49,12 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
 
+
+
+    private int goalsTeamA = MainActivity.GetgoalsTeamA();
+    private int goalsTeamB = MainActivity.GetgoalsTeamB();
+
+
     private Chronometer chronometer;
 
 
@@ -58,12 +64,14 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     private static final int DIALOG_ALERT = 10;
 
 
+
     public void onClick(View view)
     {
         showDialog(DIALOG_ALERT);
     }
-    private boolean u =true;
-
+    private boolean premiermessage =true;
+    private boolean synchroniseA = true;
+    private boolean synchroniseB = true;
 
     protected Dialog onCreateDialog(int id)
     {
@@ -155,12 +163,23 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         populateAutoComplete();
         chronometer = (Chronometer) findViewById(R.id.chronometer);
 
+        while (synchroniseA == true)
+        {
+            displayGoalsTeamA(goalsTeamA);
+            synchroniseA = false;
+        }
 
-        while(u == true)
+        while (synchroniseB == true)
+        {
+            displayGoalsTeamB(goalsTeamB);
+            synchroniseB = false;
+        }
+
+        while(premiermessage == true)
         {
                 message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
                 showDialog(DIALOG_ALERT);
-                u = false;
+                premiermessage = false;
         }
 
 
@@ -486,10 +505,73 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         }
 
         @Override
-        protected void onCancelled() {
+        protected void onCancelled()
+        {
             mAuthTask = null;
             showProgress(false);
         }
+
+
     }
+
+    private void displayGoalsTeamA(int goals)
+    {
+        TextView goalsView = (TextView) findViewById(R.id.goals_teamA);
+        goalsView.setText(String.valueOf(goals));
+    }
+
+    /**
+     * Displays the given goals for Team B.
+     */
+    private void displayGoalsTeamB(int goals)
+    {
+        TextView goalsView = (TextView) findViewById(R.id.goals_teamB);
+        goalsView.setText(String.valueOf(goals));
+    }
+
+
+    public void addGoalForTeamA(View view)
+    {
+        goalsTeamA += 1;
+        displayGoalsTeamA(goalsTeamA);
+
+    }
+
+    /**
+     * Increases the number of goals the team B.
+     */
+    public void addGoalForTeamB(View view)
+    {
+
+        goalsTeamB += 1;
+        displayGoalsTeamB(goalsTeamB);
+    }
+
+    /**
+     * Increases the number of fouls the team A.
+     */
+    public void addFoulForTeamA(View view)
+    {
+        goalsTeamA -= 1;
+        if (goalsTeamA <= 0)
+        {
+            goalsTeamA = 0;
+        }
+        displayGoalsTeamA(goalsTeamA);
+    }
+
+    /**
+     * Increases the number of fouls the team B.
+     */
+    public void addFoulForTeamB(View view)
+    {
+        goalsTeamB -= 1;
+        if (goalsTeamB <= 0)
+        {
+            goalsTeamB = 0;
+        }
+        displayGoalsTeamB(goalsTeamB);
+    }
+
 }
 
