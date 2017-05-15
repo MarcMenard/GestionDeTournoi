@@ -3,6 +3,7 @@ package com.example.hubert.app_arbitre;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -56,16 +57,17 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
     private static final int DIALOG_ALERT = 10;
 
-    public void onClick(View view) {
+
+    public void onClick(View view)
+    {
         showDialog(DIALOG_ALERT);
     }
-
-
-
+    private boolean u =true;
 
 
     protected Dialog onCreateDialog(int id)
     {
+
 
         switch (id)
         {
@@ -87,8 +89,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     {
         public void onClick(DialogInterface dialog, int which)
         {
-            message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
-            chronometer.start();
+
 
             //Change de page a un temps donné !!!!!!!
 
@@ -96,20 +97,21 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                 public void onChronometerTick(Chronometer chronometer) {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:25")) //Mettre le temps que l'on veut
+                    if (currentTime.equals("00:20")) //Mettre le temps que l'on veut
                     {
-                        startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     }
                 }
             });
 
             if (message == "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores")
             {
-
+                chronometer.start();
             }
 
         }
     }
+
 
 
 
@@ -144,12 +146,24 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     private GoogleApiClient client;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login21);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+        chronometer = (Chronometer) findViewById(R.id.chronometer);
+
+
+        while(u == true)
+        {
+                message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
+                showDialog(DIALOG_ALERT);
+                u = false;
+        }
+
+
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
