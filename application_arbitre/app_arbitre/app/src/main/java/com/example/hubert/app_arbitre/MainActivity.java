@@ -20,31 +20,35 @@ import static android.R.id.content;
 import static com.example.hubert.app_arbitre.R.id.button;
 import static com.example.hubert.app_arbitre.R.id.hmsTekst;
 
+// LA CLASSE COMMENCE
 public class MainActivity extends AppCompatActivity
 {
-    private boolean synchroniseC = true;
-    private boolean synchroniseD = true;
 
+    //INITIALISE LES POINTS A 0
     private static int goalsTeamA = 0;
     private static int goalsTeamB = 0;
 
+    //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
     private static String textTeamA = Planning.GettextTeamA();
     private static String textTeamB = Planning.GettextTeamB();
 
 
     private long timeWhenStopped = 0;
     private boolean stopClicked = true;
+
+    //ATTRIBUT POUR LE CHRONOMETRE
     private Chronometer chronometer;
 
-
+    //ATTRIBUT SERVANT POUR LES MESSAGES DE CONFIRMATION
     private java.lang.String message;
     private java.lang.String message2;
 
     private static final int DIALOG_ALERT = 10;
 
 
+    //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES
 
-
+    //GET POUR LES BUTS
     public static int GetgoalsTeamA()
     {
         return goalsTeamA;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         return goalsTeamB;
     }
 
+    //GET POUR LES NOMS DES DEUX EQUIPES
     public static String GettextTeamA()
     {
         return textTeamA;
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
+    //MéTHODE POUR LES MESSAGES
     @Override
     protected Dialog onCreateDialog(int id)
     {
@@ -92,7 +97,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //Si la réponse au message est d'annuler
+
+    //SI LA REPONSE AU MESSAGE EST D'ANNULER
     private final class CancelOnClickListener implements
             DialogInterface.OnClickListener
     {
@@ -104,7 +110,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    //si la reponse est de confirmer (Choix entre les boutons)
+    //MéTHODE DE CONDITION, SI ON AAPUIE SUR "OK" AU MESSAGE
     private final class OkOnClickListener implements
             DialogInterface.OnClickListener
     {
@@ -112,23 +118,22 @@ public class MainActivity extends AppCompatActivity
         {
 
 
-            //Change de page a un temps donné !!!!!!!
-
-
-            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            //CHANGE D'ACTIVITé A UN MOMENT DONNé
+            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
+            {
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:10")) //Mettre le temps que l'on veut
+                    if (currentTime.equals("00:10")) //METTRE LE TEMPS SOUHAITé
                     {
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
                     }
-                }});
+                }
+            });
 
 
 
-
-
+            //REINITIALISE LE CHRONOMETRE
             if (message == "Êtes vous sur de remettre le temps à 0 ?")
             {
                 TextView secondsText = (TextView) findViewById(hmsTekst);
@@ -143,7 +148,7 @@ public class MainActivity extends AppCompatActivity
                 secondsText.setText("0 seconds");
             }
 
-
+            //LE CHRONOMETRE SE LANCE
             if (message == "Lancer le chronomètre ?")
             {
                 if (stopClicked)
@@ -152,12 +157,10 @@ public class MainActivity extends AppCompatActivity
                     chronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                     chronometer.start();
                     stopClicked = false;
-
                 }
-
             }
 
-
+            //MET EN PAUSE LE CHRONOMETRE
             if (message == "Voulez vous vraiment mettre le temps en pause ?" )
             {
                 if (!stopClicked)
@@ -171,28 +174,30 @@ public class MainActivity extends AppCompatActivity
                 }
             }
 
-
+            //REINITIALISE LE SCORE
             if (message == "Voulez vous remettre le score à 0 ?")
             {
                 goalsTeamA = 0;
                 goalsTeamB = 0;
                 displayGoalsTeamA(goalsTeamA);
                 displayGoalsTeamB(goalsTeamB);
-
             }
 
+            //+1 POINT à L'éQUIPE A
             if (message == "Donner un point à cette équipe ?")
             {
                 goalsTeamA += 1;
                 displayGoalsTeamA(goalsTeamA);
             }
 
+            //+1 POINT à L'éQUIPE A
             if (message == "Donner un point à cette Team ?")
             {
                 goalsTeamB += 1;
                 displayGoalsTeamB(goalsTeamB);
             }
 
+            //-1 POINT à L'éQUIPE A
             if (message == "Enlever un point à cette équipe ?")
             {
                 goalsTeamA -= 1;
@@ -203,6 +208,7 @@ public class MainActivity extends AppCompatActivity
                 displayGoalsTeamA(goalsTeamA);
             }
 
+            //-1 POINT à L'éQUIPE B
             if (message == "Enlever un point à cette Team ?")
             {
                 goalsTeamB -= 1;
@@ -216,7 +222,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    //LA FONCTION PRINCIPALE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -224,22 +230,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
 
-
-        while (synchroniseC == true)
-        {
+        //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
             displayTextTeamA(textTeamA);
-            synchroniseC = false;
-        }
-
-        while (synchroniseD == true)
-        {
             displayTextTeamB(textTeamB);
-            synchroniseD = false;
-        }
-
     }
 
-    // the method for when we press the 'reset' button
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION REINITIALISANT LE TEMPS A 0 AU CLICK DU BOUTON "RESET"
     public void resetButtonClick(View v)
     {
         message = "Êtes vous sur de remettre le temps à 0 ?";
@@ -248,7 +244,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    // the method for when we press the 'start' button
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION START OU PAUSE SELON LES CONDITION PREALABLE, AU CLICK DU BOUTON "START/PAUSE"
     public void startButtonClick(View v)
     {
         TextView secondsText = (TextView) findViewById(hmsTekst);
@@ -267,34 +263,29 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * Displays the given goals for Team A.
-     */
+
+    //VA CHANGER LE TEXTE AFFICHé DU NOMBRE DE BUT DE L'EQUIPE A
     private void displayGoalsTeamA(int goals)
     {
         TextView goalsView = (TextView) findViewById(R.id.goals_teamA);
         goalsView.setText(String.valueOf(goals));
     }
 
-    /**
-     * Displays the given goals for Team B.
-     */
+    //VA CHANGER LE TEXTE AFFICHé DU NOMBRE DE BUT DE L'EQUIPE B
     private void displayGoalsTeamB(int goals)
     {
         TextView goalsView = (TextView) findViewById(R.id.goals_teamB);
         goalsView.setText(String.valueOf(goals));
     }
 
-
-
-
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE A
     private void displayTextTeamA(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(String.valueOf(text));
     }
 
-
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE B
     private void displayTextTeamB(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView2);
@@ -302,14 +293,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    /**
-     * Displays the given fouls for Team A.
-     */
-
-
-    /**
-     * Increases the number of goals the team A.
-     */
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addGoalForTeamA(View view)
     {
         message = "Donner un point à cette équipe ?";
@@ -318,9 +302,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    /**
-     * Increases the number of goals the team B.
-     */
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addGoalForTeamB(View view)
     {
 
@@ -329,9 +311,7 @@ public class MainActivity extends AppCompatActivity
         showDialog(DIALOG_ALERT);
     }
 
-    /**
-     * Increases the number of fouls the team A.
-     */
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addFoulForTeamA(View view)
     {
         message = "Enlever un point à cette équipe ?";
@@ -339,9 +319,7 @@ public class MainActivity extends AppCompatActivity
         showDialog(DIALOG_ALERT);
     }
 
-    /**
-     * Increases the number of fouls the team B.
-     */
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addFoulForTeamB(View view)
     {
         message = "Enlever un point à cette Team ?";
@@ -349,9 +327,7 @@ public class MainActivity extends AppCompatActivity
         showDialog(DIALOG_ALERT);
     }
 
-    /**
-     * Resets the results for both teams back to 0.
-     */
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION REINITIALISANT LES SCORES A 0, AU CLICK DU BOUTON
     public void clearResults(View view)
     {
         message = "Voulez vous remettre le score à 0 ?";
@@ -359,8 +335,11 @@ public class MainActivity extends AppCompatActivity
         showDialog(DIALOG_ALERT);
     }
 
+
+    //SI ON VEUT FAIRE RETOUR, MESSAGE AVANT DE REVENIR, SI CONFIRMATION, SUR L'ACTIVITE PRECEDENTE
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Fermeture de l'activité")
@@ -375,7 +354,6 @@ public class MainActivity extends AppCompatActivity
                 })
                 .setNegativeButton("Non, noon !", null)
                 .show();
-
     }
 
 }

@@ -18,32 +18,28 @@ import static com.example.hubert.app_arbitre.R.id.textView;
 
 public class Planning extends AppCompatActivity
 {
-    private boolean synchroniseC = true;
-    private boolean synchroniseD = true;
-
-    private static String textTeamA = GettextTeamA();
-    private static String textTeamB = GettextTeamB();
+    //INITIALISE LE NOM DES DEUX EQUIPES
+    private static String textTeamA = "Team X";
+    private static String textTeamB =  "Team Y";
 
 
-    public static String GettextTeamA(){textTeamA = "Team X"; return textTeamA;}
-    public static String GettextTeamB() {textTeamB = "Team Y"; return textTeamB;}
+    //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES (pour les noms des equipes)
+    public static String GettextTeamA() {return textTeamA;}
+    public static String GettextTeamB() {return textTeamB;}
 
+
+    //LA FONCTION PRINCIPALE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
-           // Changetexteéquipe();
-            //displayTextTeamA(textTeamA);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
 
-
+        //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT DU XML)
             displayTextTeamB(textTeamB);
             displayTextTeamA(textTeamA);
 
-
-
+        //TABLEAU POUR LES BOUTONS
         Button[] tab_boutons = new Button[6];
         tab_boutons[0] = (Button) findViewById(R.id.fab0);
         tab_boutons[1] = (Button) findViewById(R.id.fab1);
@@ -52,88 +48,37 @@ public class Planning extends AppCompatActivity
         tab_boutons[4] = (Button) findViewById(R.id.fab4);
         tab_boutons[5] = (Button) findViewById(R.id.fab5);
 
+        //BOUCLE DESACTIVANT LES BOUTONS
         for(int i = 0; i < 4; i++)
         {
             tab_boutons[i].setEnabled(false);
         }
 
-        tab_boutons[0].setOnClickListener(new View.OnClickListener()
+        //ACTIONS DE CHACUN DES BOUTONS --> AMENER AU MAINACTIVITY
+        for(int x = 0; x < 6; x++)
         {
-            @Override
-            public void onClick(View view)
+            tab_boutons[x].setOnClickListener(new View.OnClickListener()
             {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        tab_boutons[1].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        tab_boutons[2].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        tab_boutons[3].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        tab_boutons[4].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        tab_boutons[5].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                Button button=(Button) view;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    Button button = (Button) view;
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }
+            });
+        }
     }
 
 
 
-
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE du TEXTE SELECTIONNE
     private void displayTextTeamA(String text)
     {
         TextView TextView = (TextView) findViewById(R.id.textView13);
         TextView.setText(String.valueOf(text));
     }
 
-
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE du TEXTE SELECTIONNE
     private void displayTextTeamB(String text)
     {
         TextView TextView = (TextView) findViewById(R.id.textView14);

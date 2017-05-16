@@ -46,19 +46,48 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
+
+// LA CLASSE COMMENCE
 public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
 
+//ON REPREND LES POITNS DE LA FIN DU MATCH (MAINACTIVITY)
+    private static int goalsTeamA = MainActivity.GetgoalsTeamA();
+    private static int goalsTeamB = MainActivity.GetgoalsTeamB();
 
-    private int goalsTeamA = MainActivity.GetgoalsTeamA();
-    private int goalsTeamB = MainActivity.GetgoalsTeamB();
+//ON RéUTILISE LE NOM DES DEUX éQUIPE DU MATCH (MAINACTIVITY)
+    private static String textTeamA = MainActivity.GettextTeamA();
+    private static String textTeamB = MainActivity.GettextTeamB();
 
-    private String textTeamA = MainActivity.GettextTeamA();
-    private String textTeamB = MainActivity.GettextTeamB();
 
+    //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES
+
+    //GET POUR LES BUTS
+    public static int GetgoalsTeamA()
+    {
+        return goalsTeamA;
+    }
+    public static int GetgoalsTeamB()
+    {
+        return goalsTeamB;
+    }
+
+    //GET POUR LES NOMS DES DEUX EQUIPES
+    public static String GettextTeamA()
+    {
+        return textTeamA;
+    }
+    public static String GettextTeamB()
+    {
+        return textTeamB;
+    }
+
+
+
+    //ATTRIBUT POUR LE CHRONOMETRE
     private Chronometer chronometer;
 
-
+//ATTRIBUT SERVANT POUR LES MESSAGES DE CONFIRMATION
     private java.lang.String message;
     private java.lang.String message2;
 
@@ -71,18 +100,14 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         showDialog(DIALOG_ALERT);
     }
 
+
+    //BOOLEAN SERVANT A AFFICHER UN MESSAGE D'INFORMATION
     private boolean premiermessage =true;
 
-    private boolean synchroniseA = true;
-    private boolean synchroniseB = true;
 
-    private boolean synchroniseC = true;
-    private boolean synchroniseD = true;
-
+    //MéTHODE POUR LES MESSAGES
     protected Dialog onCreateDialog(int id)
     {
-
-
         switch (id)
         {
             case DIALOG_ALERT:
@@ -98,6 +123,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
 
+    //MéTHODE DE CONDITION, SI ON AAPUIE SUR "OK" AU MESSAGE
     private final class OkOnClickListener implements
             DialogInterface.OnClickListener
     {
@@ -105,36 +131,41 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         {
 
 
-            //Change de page a un temps donné !!!!!!!
-
-
-            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                public void onChronometerTick(Chronometer chronometer) {
+            //CHANGE D'ACTIVITé A UN MOMENT DONNé
+            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
+            {
+                public void onChronometerTick(Chronometer chronometer)
+                {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:20")) //Mettre le temps que l'on veut
+                    if (currentTime.equals("00:20")) //METTRE LE TEMPS SOUHAITé
                     {
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     }
                 }
             });
 
+
+           //LE CHRONOMETRE SE LANCE
             if (message == "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores")
             {
                 chronometer.start();
             }
 
+            //+1 POINT à L'éQUIPE A
             if (message == "Donner un point à cette équipe ?")
             {
                 goalsTeamA += 1;
                 displayGoalsTeamA(goalsTeamA);
             }
 
+            //+1 POINT à L'éQUIPE B
             if (message == "Donner un point à cette Team ?")
             {
                 goalsTeamB += 1;
                 displayGoalsTeamB(goalsTeamB);
             }
 
+            //-1 POINT à L'éQUIPE A
             if (message == "Enlever un point à cette équipe ?")
             {
                 goalsTeamA -= 1;
@@ -145,6 +176,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
                 displayGoalsTeamA(goalsTeamA);
             }
 
+            //-1 POINT à L'éQUIPE B
             if (message == "Enlever un point à cette Team ?")
             {
                 goalsTeamB -= 1;
@@ -172,9 +204,10 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
+    private static final String[] DUMMY_CREDENTIALS = new String[]
+            {
             "foo@example.com:hello", "bar@example.com:world"
-    };
+            };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -191,6 +224,10 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      */
     private GoogleApiClient client;
 
+
+
+
+    //LA FONCTION PRINCIPALE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -201,35 +238,18 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         populateAutoComplete();
         chronometer = (Chronometer) findViewById(R.id.chronometer);
 
-        while (synchroniseA == true)
-        {
+
+        //INITIALISE LES CHANGEMENTS DES POINTS(VIS A VIS DE 0) DES DEUX EQUIPES
             displayGoalsTeamA(goalsTeamA);
-            synchroniseA = false;
-        }
-
-        while (synchroniseB == true)
-        {
             displayGoalsTeamB(goalsTeamB);
-            synchroniseB = false;
-        }
 
-
-
-        while (synchroniseC == true)
-        {
+        //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
             displayTextTeamA(textTeamA);
-            synchroniseC = false;
-        }
-
-        while (synchroniseD == true)
-        {
             displayTextTeamB(textTeamB);
-            synchroniseD = false;
-        }
 
 
 
-
+        //BOUCLE S'ASSURANT QU'UN MESSAGE S'AFFICHE AUTOMATIQUEMENT, APPELLE ENSUITE LE CHRONOMETRE
         while(premiermessage == true)
         {
                 message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
@@ -240,10 +260,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
 
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent)
+            {
+                if (id == R.id.login || id == EditorInfo.IME_NULL)
+                {
                     attemptLogin();
                     return true;
                 }
@@ -252,21 +275,22 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             }
         });
 
+//SI LE MDP ET NDC SONT CORRECT, LANCE LA PAGE SUIVANTE APRES CLIQUE DU BOUTON CONNECTION
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener
                 (new OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                     attemptLogin();
-                if (mAuthTask != null) {
-                    startActivity(new Intent(getApplicationContext(), Planning.class));
+                if (mAuthTask != null)
+                {
+                    startActivity(new Intent(getApplicationContext(), MessageFinale.class));
                 }
-
-
-
             }
         });
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -275,22 +299,30 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
+
+    private void populateAutoComplete()
+    {
+        if (!mayRequestContacts())
+        {
             return;
         }
 
         getLoaderManager().initLoader(0, null, this);
     }
 
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+    private boolean mayRequestContacts()
+    {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+        {
             return true;
         }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+        {
             return true;
         }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+
+        if (shouldShowRequestPermissionRationale(READ_CONTACTS))
+        {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
@@ -299,7 +331,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
                             requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
                         }
                     });
-        } else {
+        }
+        else
+        {
             requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
         }
         return false;
@@ -308,10 +342,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     /**
      * Callback received when a permissions request has been completed.
      */
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
+                                           @NonNull int[] grantResults)
+    {
+        if (requestCode == REQUEST_READ_CONTACTS)
+        {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 populateAutoComplete();
             }
@@ -324,10 +361,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
+    private void attemptLogin()
+    {
+        if (mAuthTask != null)
+        {
             return;
         }
+
 
         // Reset errors.
         mEmailView.setError(null);
@@ -340,15 +380,17 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        // Check for a valid password, if the user entered one. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE MDP
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password))
+        {
             mPasswordView.setError("Mot de passe incorrect");
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        // Check for a valid email address. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE COMPTE
+        if (TextUtils.isEmpty(email))
+        {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
@@ -358,7 +400,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             cancel = true;
         }
 
-        if (cancel) {
+        if (cancel)
+        {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
@@ -371,6 +414,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         }
     }
 
+
+    //DéFINIT LES MOTS DE PASSE ET UTILISATEURS
     private boolean isEmailValid(String email)
     {
         //TODO: Replace this with your own logic
@@ -383,20 +428,24 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         return password.length() == 2 && password.contains("ok");
     }
 
+
     /**
      * Shows the progress UI and hides the login form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    private void showProgress(final boolean show)
+    {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+        {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
             mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter()
+            {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
@@ -405,13 +454,16 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter()
+            {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
-        } else {
+        }
+        else
+        {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -420,7 +472,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle)
+    {
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
@@ -436,24 +489,29 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+
     @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor)
+    {
         List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast())
+        {
             emails.add(cursor.getString(ProfileQuery.ADDRESS));
             cursor.moveToNext();
         }
-
         addEmailsToAutoComplete(emails);
     }
 
+
     @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    public void onLoaderReset(Loader<Cursor> cursorLoader)
+    {
 
     }
 
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
+    private void addEmailsToAutoComplete(List<String> emailAddressCollection)
+    {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(LoginActivity2.this,
@@ -466,7 +524,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    public Action getIndexApiAction() {
+    public Action getIndexApiAction()
+    {
         Thing object = new Thing.Builder()
                 .setName("Login Page") // TODO: Define a title for the content shown.
                 // TODO: Make sure this auto-generated URL is correct.
@@ -479,7 +538,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -489,7 +549,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
     @Override
-    public void onStop() {
+    public void onStop()
+    {
         super.onStop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -499,11 +560,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
 
-    private interface ProfileQuery {
-        String[] PROJECTION = {
+    private interface ProfileQuery
+    {
+        String[] PROJECTION =
+                {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
                 ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
+                };
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
@@ -513,7 +576,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
+    {
 
         private final String mEmail;
         private final String mPassword;
@@ -524,7 +588,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params)
+        {
             // TODO: attempt authentication against a network service.
 
             try {
@@ -547,7 +612,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final Boolean success)
+        {
             mAuthTask = null;
             showProgress(false);
 
@@ -565,32 +631,30 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             mAuthTask = null;
             showProgress(false);
         }
-
-
     }
 
+    //VA CHANGER LE TEXTE AFFICHé DU NOMBRE DE BUT DE L'EQUIPE A
     private void displayGoalsTeamA(int goals)
     {
         TextView goalsView = (TextView) findViewById(R.id.goals_teamA);
         goalsView.setText(String.valueOf(goals));
     }
 
-    /**
-     * Displays the given goals for Team B.
-     */
+    //VA CHANGER LE TEXTE AFFICHé DU NOMBRE DE BUT DE L'EQUIPE B
     private void displayGoalsTeamB(int goals)
     {
         TextView goalsView = (TextView) findViewById(R.id.goals_teamB);
         goalsView.setText(String.valueOf(goals));
     }
 
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE A
     private void displayTextTeamA(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(String.valueOf(text));
     }
 
-
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE B
     private void displayTextTeamB(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView2);
@@ -598,29 +662,23 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
 
-
+//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addGoalForTeamA(View view)
     {
         message = "Donner un point à cette équipe ?";
         message2 = "Point Inchangés";
         showDialog(DIALOG_ALERT);
-
     }
 
-    /**
-     * Increases the number of goals the team B.
-     */
+//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addGoalForTeamB(View view)
     {
-
         message = "Donner un point à cette Team ?";
         message2 = "Points Inchangés";
         showDialog(DIALOG_ALERT);
     }
 
-    /**
-     * Increases the number of fouls the team A.
-     */
+//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addFoulForTeamA(View view)
     {
         message = "Enlever un point à cette équipe ?";
@@ -628,9 +686,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         showDialog(DIALOG_ALERT);
     }
 
-    /**
-     * Increases the number of fouls the team B.
-     */
+//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addFoulForTeamB(View view)
     {
         message = "Enlever un point à cette Team ?";
