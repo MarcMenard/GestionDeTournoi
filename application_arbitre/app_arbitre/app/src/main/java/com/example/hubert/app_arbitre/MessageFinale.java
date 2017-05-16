@@ -1,7 +1,9 @@
 package com.example.hubert.app_arbitre;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -74,5 +76,24 @@ public class MessageFinale extends AppCompatActivity
         textView.setText(String.valueOf(text));
     }
 
+    //SI ON VEUT FAIRE RETOUR, MESSAGE AVANT DE REVENIR, SI CONFIRMATION, SUR L'ACTIVITE PRECEDENTE
+    @Override
+    public void onBackPressed()
+    {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Fermeture de l'activité")
+                .setMessage("Êtes vous sur de fermer l'activité ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Non, noon !", null)
+                .show();
+    }
 
 }
