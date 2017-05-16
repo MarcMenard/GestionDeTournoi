@@ -28,6 +28,7 @@ public class Planning extends AppCompatActivity
     private static String textTeamA = "Team X";
     private static String textTeamB = "Team Y";
 
+    //CHOISIS LE NOMBRE DE MATCH NON ARBITRABLE
     private int Matcharbitre = 4;
 
     //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES (pour les noms des equipes)
