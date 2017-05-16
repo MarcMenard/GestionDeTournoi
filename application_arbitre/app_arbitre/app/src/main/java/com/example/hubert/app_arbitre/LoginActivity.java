@@ -216,7 +216,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE MDP
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password))
+        if (!isPasswordValid(password))
         {
             mPasswordView.setError("Mot de passe incorrect");
             focusView = mPasswordView;
@@ -470,24 +470,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    //SI ON VEUT FAIRE RETOUR, RELANCE L'ACTIVITé
+    //SI ON VEUT FAIRE RETOUR, IMPOSSIBLE
     public void onBackPressed()
     {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Fermeture de l'activité")
-                .setMessage("Êtes vous sur de fermer l'activité ?")
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                    }
-
-                })
-                .setNegativeButton("Non, noon !", null)
-                .show();
 
     }
 

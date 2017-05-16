@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import static com.example.hubert.app_arbitre.R.id.text;
@@ -20,21 +21,21 @@ import static com.example.hubert.app_arbitre.R.id.textView;
 
 public class Planning extends AppCompatActivity
 {
-
-  //  String textTeam[] = new [11];
+    //CONFIGURATION DES DIFFERENTS TEXTVIEW
     private static String textTeam[] = {"a", "b", "c", "d", "e", "f", "g","h","i","j","k","l"};
-//    new textTeam[0] = "PNJ";
 
-    //INITIALISE LE NOM DES DEUX EQUIPES
-
+    //INITIALISE LE NOM DES DEUX EQUIPES QUI SUIVRONT SUR LES ACTIVITES SUIVANTES
     private static String textTeamA = "Team X";
     private static String textTeamB = "Team Y";
 
+    private int Matcharbitre = 4;
 
     //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES (pour les noms des equipes)
     public static String GettextTeamA() {return textTeamA;}
     public static String GettextTeamB() {return textTeamB;}
 
+    //INITIALISE LES TEXTES INFOS
+    private static String info = "Arbitré";
 
     //LA FONCTION PRINCIPALE
     @Override
@@ -44,15 +45,15 @@ public class Planning extends AppCompatActivity
         setContentView(R.layout.activity_planning);
 
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT DU XML)
-
         for (int h = 0; h < 12; h++)
         {
             displayTextTeamC(textTeam[h]);
         }
 
-       // displayTextTeamB(textTeamA);
-       // displayTextTeamB(textTeamB);
+        //INITIALISE LES CHANGEMENTS DES INFOS DU PLANNING
+        displayTextinfo(info);
 
+        //TABLEAU POUR LE NOM DES EQUIPE DU PLANNING
        /* android.view.View texxtTeam[]= new android.view.View[11];
         texxtTeam[0] =  findViewById(R.id.textView0);
         texxtTeam[1] =  findViewById(R.id.textView1);
@@ -67,7 +68,10 @@ public class Planning extends AppCompatActivity
         texxtTeam[10] = findViewById(R.id.textView10);
         texxtTeam[11] = findViewById(R.id.textView11);*/
 
-        //TABLEAU POUR LES BOUTONS
+
+
+
+        //TABLEAU POUR LES BOUTONS DU PLANNING
         Button[] tab_boutons = new Button[6];
         tab_boutons[0] = (Button) findViewById(R.id.fab0);
         tab_boutons[1] = (Button) findViewById(R.id.fab1);
@@ -76,26 +80,25 @@ public class Planning extends AppCompatActivity
         tab_boutons[4] = (Button) findViewById(R.id.fab4);
         tab_boutons[5] = (Button) findViewById(R.id.fab5);
 
-        //BOUCLE DESACTIVANT LES BOUTONS
-        for(int i = 0; i < 4; i++)
-        {
-            tab_boutons[i].setEnabled(false);
-        }
 
-        //ACTIONS DE CHACUN DES BOUTONS --> AMENER AU MAINACTIVITY
 
-        for(int x = 0; x < 6; x++)
+       /* for(int x = 0; x < 6; x++)
         {
-            tab_boutons[x].setOnClickListener(new View.OnClickListener()
+           tab_boutons[x].setOnClickListener(new View.OnClickListener()
             {
+                textTeamA = textTeam[cpt * 2];
+                textTeamB = textTeam[cpt * 2 + 1];
                 @Override
                 public void onClick(View view)
                 {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
-            });
+          }); */
 
 
+
+
+            //CHANGE LA VALEUR DU TEXTE DES PROCHAINES ACTIVITE SELON LE BOUTON CHOISI + //ACTIONS DE CHACUN DES BOUTONS --> AMENER AU MAINACTIVITY
             tab_boutons[0].setOnClickListener(new View.OnClickListener()
                 {
 
@@ -167,13 +170,43 @@ public class Planning extends AppCompatActivity
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
             });
+        }
+
+    //CHANGE LE TEXTE DES TEXTES INFOS DU PLANNING CHOISI + DESACTIVE LES BOUTONS DU PLANNING CHOISI
+    private void displayTextinfo(String text)
+    {
+        for(int i = 0; i < Matcharbitre ; i++)
+        {
+            //TABLEAU POUR LES INFOS (A DROITE) DU PLANNING
+            android.view.View textinfo[] = new android.view.View[6];
+            textinfo[0] = findViewById(R.id.textView50);
+            textinfo[1] = findViewById(R.id.textView51);
+            textinfo[2] = findViewById(R.id.textView52);
+            textinfo[3] = findViewById(R.id.textView53);
+            textinfo[4] = findViewById(R.id.textView54);
+            textinfo[5] = findViewById(R.id.textView55);
+
+            //TABLEAU POUR LES BOUTONS DU PLANNING
+            Button[] tab_boutons = new Button[6];
+            tab_boutons[0] = (Button) findViewById(R.id.fab0);
+            tab_boutons[1] = (Button) findViewById(R.id.fab1);
+            tab_boutons[2] = (Button) findViewById(R.id.fab2);
+            tab_boutons[3] = (Button) findViewById(R.id.fab3);
+            tab_boutons[4] = (Button) findViewById(R.id.fab4);
+            tab_boutons[5] = (Button) findViewById(R.id.fab5);
+
+            //CHANGE LE TEXTE DES TEXTES INFOS DU PLANNING CHOISI
+            TextView textView = (TextView) textinfo[i];
+            textView.setText(String.valueOf(text));
+
+            //DESACTIVANT LES BOUTONS DU PLANNING CHOISI
+            tab_boutons[i].setEnabled(false);
+        }
+    }
 
 
 
-        }}
-
-
-
+    //VA CHANGER LE NOM DES EQUIPES
     private void displayTextTeamC(String text)
     {
         /*android.view.View texxtTeam[]= new android.view.View[11];
@@ -255,16 +288,6 @@ public class Planning extends AppCompatActivity
     }
 
 
-
-   /* private void displayTextTeamC(String text)
-    {
-        TextView TextView = (TextView) texxtTeam[cpt];
-        TextView.setText(String.valueOf(text));
-    }*/
-
-
-
-
     //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE du TEXTE SELECTIONNE
     private void displayTextTeamA(String text)
     {
@@ -280,24 +303,11 @@ public class Planning extends AppCompatActivity
         TextView.setText(String.valueOf(text));
     }
 
-    //SI ON VEUT FAIRE RETOUR, MESSAGE AVANT DE REVENIR, SI CONFIRMATION, SUR L'ACTIVITE PRECEDENTE
+    //SI ON VEUT FAIRE RETOUR, IMPOSSIBLE
     @Override
     public void onBackPressed()
     {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Fermeture de l'activité")
-                .setMessage("Êtes vous sur de fermer l'activité ?")
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
 
-                })
-                .setNegativeButton("Non, noon !", null)
-                .show();
     }
 }
 

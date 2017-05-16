@@ -76,24 +76,11 @@ public class MessageFinale extends AppCompatActivity
         textView.setText(String.valueOf(text));
     }
 
-    //SI ON VEUT FAIRE RETOUR, MESSAGE AVANT DE REVENIR, SI CONFIRMATION, SUR L'ACTIVITE PRECEDENTE
+    //SI ON VEUT FAIRE RETOUR, IMPOSSIBLE
     @Override
     public void onBackPressed()
     {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Fermeture de l'activité")
-                .setMessage("Êtes vous sur de fermer l'activité ?")
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
 
-                })
-                .setNegativeButton("Non, noon !", null)
-                .show();
     }
 
 }

@@ -9,7 +9,8 @@
 
 
     <LinearLayout
-        android:background="#77B5FE"
+        android:alpha="0.7"
+        android:background="#31B404"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
@@ -48,19 +49,20 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#FF0000"
+
             android:layout_height="fill_parent"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Arbitré"
+            android:text="13h30"
             android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView51" />
+            android:id="@+id/textView50" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:background="#77B5FE"
+        android:alpha="0.7"
+        android:background="#31B404"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
@@ -99,19 +101,19 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#FF0000"
             android:layout_height="fill_parent"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Arbitré"
+            android:text="13h40"
             android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView52" />
+            android:id="@+id/textView51" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:background="#77B5FE"
+        android:alpha="0.7"
+        android:background="#31B404"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
@@ -150,19 +152,20 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#FF0000"
+
             android:layout_height="fill_parent"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Arbitré"
+            android:text="13h50"
             android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView53" />
+            android:id="@+id/textView52" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:background="#77B5FE"
+        android:alpha="0.7"
+        android:background="#31B404"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
@@ -201,14 +204,14 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#FF0000"
+
             android:layout_height="fill_parent"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Arbitré"
+            android:text="14h00"
             android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView54" />
+            android:id="@+id/textView53" />
 
     </LinearLayout>
 
@@ -221,6 +224,7 @@
         android:layout_marginTop="15dp">
 
     <Button
+        android:alpha="0.7"
         android:id="@+id/fab4"
         android:text="Arbitrer"
         android:layout_width="wrap_content"
@@ -256,10 +260,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="14h20"
-            android:textSize="20sp"
+            android:text="14h10"
+            android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView55" />
+            android:id="@+id/textView54" />
 
     </LinearLayout>
 
@@ -272,6 +276,7 @@
         android:layout_marginTop="15dp">
 
         <Button
+            android:alpha="0.7"
             android:id="@+id/fab5"
             android:text="Arbitrer"
             android:layout_width="wrap_content"
@@ -307,9 +312,9 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:text="14h20"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:layout_width="150dp"
-            android:id="@+id/textView56" />
+            android:id="@+id/textView55" />
 
     </LinearLayout>
 
