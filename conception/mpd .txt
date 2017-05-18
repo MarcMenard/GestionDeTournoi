@@ -1,0 +1,72 @@
+MDP sur 192.168.1.1 --> Routeur : cnun-5wna-tsqn   Nom utilisateur : cisco
+
+mdp Router : cnun-5wna-tsqn
+BDD : mdp : appli_foot
+
+clé sécurité routeur : sjml-y1ld-btqs
+
+Ajouter Bouton retirer but
+Séparer l'écran haut/bas une équipe par partie
+mettre le temps au milieu
+
+metre "require all granted" partout à la place de "require local" --> config wampserver
++ le lien dans les favoris
+
+wampserver : ndc : Tournoi
+mdp : appli_foot
+
+nom DNS Tournoi
+
+Nom Wifi Gestion_Tournoi
+
+1. Faire les requêtes sur PhP MyAdmin
+2. Faire un Script PHP "notepad.php"
+3. Faire un lien entre Android   Faire avec Emulateur en LocalHost, Cherchez IP spéciale pour LocalHost du coup
+4. Faire l'Affichage sur Android en dynamique
+
+(Utiliser a un moment des Listview)
+JsonArray à utiliser si tu dois afficher plusieurs JSONObject
+
+
+3 choses a faire : 
+- Recevoir les utilisateurs et les mdp
+- Afficher le planning en fonction de l'utilisateur connecté
+- Envoyer Buts + points (calculés) 
+
+(- Changer couleur IHM --> Bordeaux)
+
+
+
+1ere Requete :    SELECT A.id, A.nom,A.motdepasse FROM `arbitre` AS A     //Sélectionnes la liste des arbitre, avec leur id, ndc et mdp 
+
+2eme Requete : //Affiche Les des deux équipes pour, ici, la rencontre 3
+SELECT E.nom FROM `equipe` AS E 
+JOIN `score`AS S ON E.id = S.equipe_id
+JOIN `rencontre` AS R ON S.id = R.score1_id OR S.id = R.score2_id
+WHERE R.id = 3
+
+3eme Requete : //Affiche Toutes les équipes que l'arbitre 1 prendra en charge
+SELECT E.nom FROM `equipe` AS E 
+JOIN `score`AS S ON E.id = S.equipe_id
+JOIN `rencontre` AS R ON S.id = R.score1_id OR S.id = R.score2_id
+JOIN `arbitre` AS A ON R.arbitre_id = A.id
+WHERE A.id = 1
+
+
+
+SELECT E.nom FROM `equipe` AS E 
+JOIN `score`AS S ON E.id = S.id
+JOIN `rencontre` AS R ON S.id = R.id
+WHERE R.id = 3
+
+
+SELECT A.id, A.nom,A.motdepasse FROM `arbitre` AS A 
+JOIN `rencontre` AS R ON A.id = R.arbitre_id
+JOIN `score` AS S ON R.score1_id,R.score2_id = S.id
+JOIN `equipe` AS E ON S.equipe_id = E.id
+
+SELECT A.id, A.nom,A.motdepasse FROM `arbitre` AS A 
+JOIN `rencontre` AS R ON A.id = R.arbitre_id
+JOIN `score` AS S ON R.score1_id = S.id
+JOIN `equipe` AS E ON S.equipe_id = E.id
+Where E.id = 1

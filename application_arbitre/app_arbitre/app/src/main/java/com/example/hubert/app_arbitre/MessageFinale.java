@@ -38,38 +38,36 @@ public class MessageFinale extends AppCompatActivity
         setContentView(R.layout.activity_messagefinale);
 
         //lES CONDITIONS POUR ATTRIBUER LES POINTS
-        if (goalsTeamA> goalsTeamB)
+        if (forfait != 1)
         {
-            pointTeamA = 4;
-            pointTeamB = 1;
-        }
+            if (goalsTeamA > goalsTeamB)
+            {
+                pointTeamA = 4;
+                pointTeamB = 1;
+            }
 
-        if (goalsTeamA< goalsTeamB)
-        {
+            if (goalsTeamA < goalsTeamB)
+            {
                 pointTeamA = 1;
                 pointTeamB = 4;
-        }
-
-        if (goalsTeamA == goalsTeamB)
-        {
-            if (forfait != 1)
-            {
-            pointTeamA = 2;
-            pointTeamB = 2;
             }
-            else
+
+            if (goalsTeamA == goalsTeamB)
             {
-                pointTeamA = Forfait.GetpointTeamA();
-                pointTeamB = Forfait.GetpointTeamB();
+                pointTeamA = 2;
+                pointTeamB = 2;
+            }
+
+            if (goalsTeamA < goalsTeamB)
+            {
+                pointTeamA = 1;
+                pointTeamB = 4;
             }
         }
-
-        if (goalsTeamA< goalsTeamB)
-        {
-            pointTeamA = 1;
-            pointTeamB = 4;
-        }
-
+        else {
+            pointTeamA = Forfait.GetpointTeamA();
+            pointTeamB = Forfait.GetpointTeamB();
+             }
 
         //INITIALISE LES CHANGEMENTS DES POINTS(VIS A VIS DE 0) DES DEUX EQUIPES
         displayGoalsTeamA(goalsTeamA);
