@@ -146,14 +146,14 @@ public class Forfait extends AppCompatActivity
 
 
 
-    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE A
+    //VA CHANGER LES POINTS DE l'EQUIPE DE L'EQUIPE A
     private void displayTextTeamA(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(String.valueOf(text));
     }
 
-    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE B
+    //VA CHANGER LES POINTS DE l'EQUIPE DE L'EQUIPE B
     private void displayTextTeamB(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView2);
