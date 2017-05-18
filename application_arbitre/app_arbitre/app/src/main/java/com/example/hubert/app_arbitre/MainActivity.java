@@ -3,6 +3,7 @@ package com.example.hubert.app_arbitre;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +24,8 @@ import static com.example.hubert.app_arbitre.R.id.hmsTekst;
 // LA CLASSE COMMENCE
 public class MainActivity extends AppCompatActivity
 {
+
+    MediaPlayer alarm;
 
     //INITIALISE LES POINTS A 0
     private static int goalsTeamA = 0;
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity
     private final class OkOnClickListener implements
             DialogInterface.OnClickListener
     {
+
         public void onClick(DialogInterface dialog, int which)
         {
 
@@ -126,7 +130,9 @@ public class MainActivity extends AppCompatActivity
                     String currentTime = chronometer.getText().toString();
                     if (currentTime.equals("00:10")) //METTRE LE TEMPS SOUHAITé
                     {
+                        alarm.start();
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
+
                     }
                 }
             });
@@ -229,6 +235,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
+
+        alarm = MediaPlayer.create(this, R.raw.sound);
 
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
             displayTextTeamA(textTeamA);
