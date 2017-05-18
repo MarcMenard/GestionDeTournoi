@@ -22,6 +22,8 @@ public class Forfait extends AppCompatActivity
     private static int pointTeamC = 0;
     private static int pointTeamD = 0;
 
+    protected static int trueforfait = 0;
+
     //GET POUR LES BUTS
     public static int GetpointTeamA()
     {
@@ -30,6 +32,12 @@ public class Forfait extends AppCompatActivity
     public static int GetpointTeamB()
     {
         return pointTeamD;
+    }
+
+    //Déclare MessageFinale si il y a eu ou non un forfait
+    public static int Gettrueforfait()
+    {
+        return trueforfait;
     }
 
     //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
@@ -89,18 +97,22 @@ public class Forfait extends AppCompatActivity
 
         public void onClick(DialogInterface dialog, int which)
         {
+            //Si la team A déclare Forfait
             if (message == "Cette équipe a donc perdu ?")
             {
                 pointTeamC = 0;
                 pointTeamD = 4;
-                startActivity(new Intent(getApplicationContext(), MessageFinale.class));
+                trueforfait = 1;
+                startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
             }
 
+            //Si la team B déclare Forfait
             if (message == "Cette équipe déclare Forfait ?")
             {
                 pointTeamC = 4;
                 pointTeamD = 0;
-                startActivity(new Intent(getApplicationContext(), MessageFinale.class));
+                trueforfait = 1;
+                startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
             }
         }
 

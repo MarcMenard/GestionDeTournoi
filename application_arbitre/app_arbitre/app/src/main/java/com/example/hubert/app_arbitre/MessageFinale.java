@@ -23,8 +23,12 @@ public class MessageFinale extends AppCompatActivity
     private String textTeamA = LoginActivity2.GettextTeamA();
     private String textTeamB = LoginActivity2.GettextTeamB();
 
-    private int pointTeamA = Forfait.GetpointTeamA();
-    private int pointTeamB = Forfait.GetpointTeamB();
+    //Pour savoir si il y a eu forfait
+    private int forfait = Forfait.Gettrueforfait();
+
+    //Initialise les points
+    private int pointTeamA = 0;
+    private int pointTeamB = 0;
 
     //LA FONCTION PRINCIPALE
     @Override
@@ -32,6 +36,40 @@ public class MessageFinale extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messagefinale);
+
+        //lES CONDITIONS POUR ATTRIBUER LES POINTS
+        if (goalsTeamA> goalsTeamB)
+        {
+            pointTeamA = 4;
+            pointTeamB = 1;
+        }
+
+        if (goalsTeamA< goalsTeamB)
+        {
+                pointTeamA = 1;
+                pointTeamB = 4;
+        }
+
+        if (goalsTeamA == goalsTeamB)
+        {
+            if (forfait != 1)
+            {
+            pointTeamA = 2;
+            pointTeamB = 2;
+            }
+            else
+            {
+                pointTeamA = Forfait.GetpointTeamA();
+                pointTeamB = Forfait.GetpointTeamB();
+            }
+        }
+
+        if (goalsTeamA< goalsTeamB)
+        {
+            pointTeamA = 1;
+            pointTeamB = 4;
+        }
+
 
         //INITIALISE LES CHANGEMENTS DES POINTS(VIS A VIS DE 0) DES DEUX EQUIPES
         displayGoalsTeamA(goalsTeamA);
