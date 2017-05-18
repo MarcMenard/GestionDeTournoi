@@ -225,6 +225,10 @@ public class MainActivity extends AppCompatActivity
                 displayGoalsTeamB(goalsTeamB);
             }
 
+            if (message == "Voulez vous vraiment faire Forfait ?")
+            {
+                startActivity(new Intent(getApplicationContext(), Forfait.class));
+            }
         }
     }
 
@@ -269,6 +273,14 @@ public class MainActivity extends AppCompatActivity
             message2 = "Le chronomètre continue !";
             showDialog(DIALOG_ALERT);
         }
+    }
+
+    public void forfait(View v)
+    {
+        startActivity(new Intent(getApplicationContext(), Forfait.class));
+          /*  message = "Voulez vous vraiment faire Forfait ?";
+            message2 = "Le Match Continue !";
+        showDialog(DIALOG_ALERT);*/
     }
 
 

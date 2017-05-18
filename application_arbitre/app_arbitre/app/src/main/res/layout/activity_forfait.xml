@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hubert.app_arbitre.Forfait">
+
+
+    <LinearLayout
+        android:background="#FF7F50"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent">
+
+    <TextView
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_weight="0.2"
+        android:text="Team A"
+        android:textSize="20sp"
+        android:layout_width="100dp"
+        android:id="@+id/textView" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="260dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:onClick="Boutton1"
+            android:text="Déclaration Forfait"
+            android:id="@+id/button1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background = "#77B5FE"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent">
+
+    <TextView
+        android:layout_height="fill_parent"
+        android:layout_weight="0.2"
+        android:gravity="center"
+        android:text="Team B"
+        android:textSize="20sp"
+        android:layout_width="100dp"
+        android:id="@+id/textView2" />
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="260dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:onClick="Boutton2"
+            android:text="Déclaration Forfait"
+            android:id="@+id/button2"/>
+
+    </LinearLayout>
+
+</LinearLayout>

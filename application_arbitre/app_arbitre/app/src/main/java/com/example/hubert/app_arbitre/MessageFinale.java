@@ -23,7 +23,8 @@ public class MessageFinale extends AppCompatActivity
     private String textTeamA = LoginActivity2.GettextTeamA();
     private String textTeamB = LoginActivity2.GettextTeamB();
 
-
+    private int pointTeamA = Forfait.GetpointTeamA();
+    private int pointTeamB = Forfait.GetpointTeamB();
 
     //LA FONCTION PRINCIPALE
     @Override
@@ -39,6 +40,9 @@ public class MessageFinale extends AppCompatActivity
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
         displayTextTeamA(textTeamA);
         displayTextTeamB(textTeamB);
+
+        displaypointTeamA(pointTeamA);
+        displaypointTeamB(pointTeamB);
     }
 
 
@@ -73,6 +77,21 @@ public class MessageFinale extends AppCompatActivity
     private void displayTextTeamB(String text)
     {
         TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(String.valueOf(text));
+    }
+
+
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE A
+    private void displaypointTeamA(int text)
+    {
+        TextView textView = (TextView) findViewById(R.id.point_teamA);
+        textView.setText(String.valueOf(text));
+    }
+
+    //VA CHANGER LE NOM DE l'EQUIPE DE L'EQUIPE B
+    private void displaypointTeamB(int text)
+    {
+        TextView textView = (TextView) findViewById(R.id.point_teamB);
         textView.setText(String.valueOf(text));
     }
 

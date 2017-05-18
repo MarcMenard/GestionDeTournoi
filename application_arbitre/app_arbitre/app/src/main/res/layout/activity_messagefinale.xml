@@ -35,6 +35,40 @@
             android:text="@string/goals_teamA"
             android:textColor="#000000"
             android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="But"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/point_teamA"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/info2"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Point"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -91,6 +125,40 @@
             android:text="@string/goals_teamB"
             android:textColor="#000000"
             android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/info3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="But"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/point_teamB"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/info4"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Point"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+
     </LinearLayout>
 
 
