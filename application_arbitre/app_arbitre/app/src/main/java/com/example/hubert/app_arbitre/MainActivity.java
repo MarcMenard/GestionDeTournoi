@@ -240,11 +240,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
 
-        alarm = MediaPlayer.create(this, R.raw.sound);
-
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
             displayTextTeamA(textTeamA);
             displayTextTeamB(textTeamB);
+
+        alarm = MediaPlayer.create(this, R.raw.sound);
     }
 
     //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION REINITIALISANT LE TEMPS A 0 AU CLICK DU BOUTON "RESET"
@@ -277,10 +277,9 @@ public class MainActivity extends AppCompatActivity
 
     public void forfait(View v)
     {
-        startActivity(new Intent(getApplicationContext(), Forfait.class));
-          /*  message = "Voulez vous vraiment faire Forfait ?";
+            message = "Voulez vous vraiment faire Forfait ?";
             message2 = "Le Match Continue !";
-        showDialog(DIALOG_ALERT);*/
+            showDialog(DIALOG_ALERT);
     }
 
 
