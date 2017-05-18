@@ -59,6 +59,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     private static String textTeamA = MainActivity.GettextTeamA();
     private static String textTeamB = MainActivity.GettextTeamB();
 
+    //Pour savoir si il y a eu forfait
+    private int forfait = Forfait.Gettrueforfait();
 
     //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES
 
@@ -247,7 +249,14 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             displayTextTeamA(textTeamA);
             displayTextTeamB(textTeamB);
 
-
+        //DÉSACTIVE LES BOUTONS SI FORFAIT
+        if (forfait == 1)
+        {
+            findViewById(R.id.button).setEnabled(false);
+            findViewById(R.id.button2).setEnabled(false);
+            findViewById(R.id.button3).setEnabled(false);
+            findViewById(R.id.button4).setEnabled(false);
+        }
 
         //BOUCLE S'ASSURANT QU'UN MESSAGE S'AFFICHE AUTOMATIQUEMENT, APPELLE ENSUITE LE CHRONOMETRE
         while(premiermessage == true)
