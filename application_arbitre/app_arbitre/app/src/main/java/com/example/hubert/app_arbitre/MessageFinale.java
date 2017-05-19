@@ -23,6 +23,8 @@ public class MessageFinale extends AppCompatActivity
     private String textTeamA = LoginActivity2.GettextTeamA();
     private String textTeamB = LoginActivity2.GettextTeamB();
 
+
+
     //Pour savoir si il y a eu forfait
     private int forfait = Forfait.Gettrueforfait();
 
@@ -84,6 +86,9 @@ public class MessageFinale extends AppCompatActivity
 
     public void retour_login(View v)
     {
+        MainActivity.SetgoalsTeamA(0);
+        MainActivity.SetgoalsTeamB(0);
+        Forfait.Settrueforfait(0);
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 

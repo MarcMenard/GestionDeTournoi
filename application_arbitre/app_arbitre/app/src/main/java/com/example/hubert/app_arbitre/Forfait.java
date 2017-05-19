@@ -34,6 +34,11 @@ public class Forfait extends AppCompatActivity
         return pointTeamD;
     }
 
+    public static void Settrueforfait (int leforfait)
+    {
+        trueforfait = leforfait;
+    }
+
     //Déclare MessageFinale si il y a eu ou non un forfait
     public static int Gettrueforfait()
     {

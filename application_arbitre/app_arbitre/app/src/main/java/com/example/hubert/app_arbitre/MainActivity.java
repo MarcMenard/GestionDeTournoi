@@ -71,7 +71,15 @@ public class MainActivity extends AppCompatActivity
         return textTeamB;
     }
 
+    public static void SetgoalsTeamA (int goalsTA)
+    {
+        goalsTeamA = goalsTA;
+    }
 
+    public static void SetgoalsTeamB (int goalsTB)
+    {
+        goalsTeamB = goalsTB;
+    }
 
     public void onClick(View view) {
         showDialog(DIALOG_ALERT);
@@ -359,7 +367,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Fermeture de l'activité")
+                .setMessage("Êtes vous sur de revenir au planning ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        goalsTeamA = 0;
+                        goalsTeamB = 0;
+                        startActivity(new Intent(getApplicationContext(), Planning.class));
+                    }
+                })
+                .setNegativeButton("Non, noon !", null)
+                .show();
     }
 
 }

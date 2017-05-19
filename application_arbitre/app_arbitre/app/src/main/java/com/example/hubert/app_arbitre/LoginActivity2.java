@@ -47,9 +47,13 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 
+
 // LA CLASSE COMMENCE
 public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
+
+    protected int pointTeamA = 0;
+    protected int pointTeamB = 0;
 
 //ON REPREND LES POITNS DE LA FIN DU MATCH (MAINACTIVITY)
     private static int goalsTeamA = MainActivity.GetgoalsTeamA();
@@ -239,6 +243,41 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
         chronometer = (Chronometer) findViewById(R.id.chronometer);
+
+
+        if (forfait != 1)
+        {
+            if (goalsTeamA > goalsTeamB)
+            {
+                pointTeamA = 4;
+                pointTeamB = 1;
+            }
+
+            if (goalsTeamA < goalsTeamB)
+            {
+                pointTeamA = 1;
+                pointTeamB = 4;
+            }
+
+            if (goalsTeamA == goalsTeamB)
+            {
+                pointTeamA = 2;
+                pointTeamB = 2;
+            }
+
+            if (goalsTeamA < goalsTeamB)
+            {
+                pointTeamA = 1;
+                pointTeamB = 4;
+            }
+        }
+        else {
+            goalsTeamA = 0;
+            goalsTeamB = 0;
+            pointTeamA = Forfait.GetpointTeamA();
+            pointTeamB = Forfait.GetpointTeamB();
+        }
+
 
 
         //INITIALISE LES CHANGEMENTS DES POINTS(VIS A VIS DE 0) DES DEUX EQUIPES
