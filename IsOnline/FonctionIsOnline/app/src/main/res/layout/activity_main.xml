@@ -10,15 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hubert.isonline.MainActivity">
 
-    <Button
-        android:text="Test_Online"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.2"
-        android:id="@+id/start_button"
-        android:onClick="fonctionisonline" />
-
     <TextView
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
@@ -27,9 +18,16 @@
         android:textSize="20sp"
         android:layout_width="150dp"
         android:id="@+id/textView"
-        android:layout_alignBaseline="@+id/start_button"
-        android:layout_alignBottom="@+id/start_button"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list">
+
+    </ListView>
 
 
 </RelativeLayout>

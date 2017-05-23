@@ -39,7 +39,7 @@ JsonArray à utiliser si tu dois afficher plusieurs JSONObject
 
 1ere Requete :    SELECT A.id, A.nom,A.motdepasse FROM `arbitre` AS A     //Sélectionnes la liste des arbitre, avec leur id, ndc et mdp 
 
-2eme Requete : //Affiche Les des deux équipes pour, ici, la rencontre 3
+2eme Requete : //Affiche Les deux équipes pour, ici, la rencontre 3
 SELECT E.nom FROM `equipe` AS E 
 JOIN `score`AS S ON E.id = S.equipe_id
 JOIN `rencontre` AS R ON S.id = R.score1_id OR S.id = R.score2_id
@@ -50,7 +50,7 @@ SELECT E.nom FROM `equipe` AS E
 JOIN `score`AS S ON E.id = S.equipe_id
 JOIN `rencontre` AS R ON S.id = R.score1_id OR S.id = R.score2_id
 JOIN `arbitre` AS A ON R.arbitre_id = A.id
-WHERE A.id = 1
+WHERE A.id = 1 ORDER BY S.id
 
 
 

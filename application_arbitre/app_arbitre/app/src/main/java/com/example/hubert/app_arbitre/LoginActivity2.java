@@ -22,6 +22,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,12 +33,20 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,8 +97,6 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         return textTeamB;
     }
 
-
-
     //ATTRIBUT POUR LE CHRONOMETRE
     private Chronometer chronometer;
 
@@ -108,7 +115,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
 
     //BOOLEAN SERVANT A AFFICHER UN MESSAGE D'INFORMATION
-    private boolean premiermessage =true;
+    private boolean premiermessage = true;
 
 
     //MéTHODE POUR LES MESSAGES
@@ -135,16 +142,18 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     {
         public void onClick(DialogInterface dialog, int which)
         {
-
-
+            //CHANGE D'ACTIVITé A UN MOMENT DONNé
             //CHANGE D'ACTIVITé A UN MOMENT DONNé
             chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
             {
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:20")) //METTRE LE TEMPS SOUHAITé
+                    if (currentTime.equals("05:00")) //METTRE LE TEMPS SOUHAITÉ
                     {
+                        MainActivity.SetgoalsTeamA(0);
+                        MainActivity.SetgoalsTeamB(0);
+                        Forfait.Settrueforfait(0);
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     }
                 }
@@ -276,6 +285,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             goalsTeamB = 0;
             pointTeamA = Forfait.GetpointTeamA();
             pointTeamB = Forfait.GetpointTeamB();
+
+            //DÉSACTIVE LES BOUTONS SI FORFAIT
+            findViewById(R.id.button).setEnabled(false);
+            findViewById(R.id.button2).setEnabled(false);
+            findViewById(R.id.button3).setEnabled(false);
+            findViewById(R.id.button4).setEnabled(false);
+
         }
 
 
@@ -288,14 +304,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             displayTextTeamA(textTeamA);
             displayTextTeamB(textTeamB);
 
-        //DÉSACTIVE LES BOUTONS SI FORFAIT
-        if (forfait == 1)
-        {
-            findViewById(R.id.button).setEnabled(false);
-            findViewById(R.id.button2).setEnabled(false);
-            findViewById(R.id.button3).setEnabled(false);
-            findViewById(R.id.button4).setEnabled(false);
-        }
+
+
+
 
         //BOUCLE S'ASSURANT QU'UN MESSAGE S'AFFICHE AUTOMATIQUEMENT, APPELLE ENSUITE LE CHRONOMETRE
         while(premiermessage == true)
@@ -404,6 +415,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
 
+    private String email = "";
+    private String password = "";
+
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -422,8 +436,11 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
+        String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+
+        new DownloadTask().execute(loginUrl);
 
         boolean cancel = false;
         View focusView = null;
@@ -462,18 +479,79 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         }
     }
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private class DownloadTask extends AsyncTask<String, Void, String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                return downloadContent(params[0]);
+
+            } catch (IOException e) {
+                return "Unable to retrieve data. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            if (!result.contains("fail"))
+            {
+                startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
+            }
+
+            Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private String downloadContent(String myurl) throws IOException
+    {
+        InputStream is = null;
+        int length = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 );
+            conn.setConnectTimeout(15000 );
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.connect();
+            int response = conn.getResponseCode();
+            Log.d(TAG, "The response is: " + response);
+            is = conn.getInputStream();
+
+            String contentAsString = convertInputStreamToString(is, length);
+            return contentAsString;
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
+
+    public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[length];
+        reader.read(buffer);
+        return new String(buffer);
+    }
 
     //DéFINIT LES MOTS DE PASSE ET UTILISATEURS
     private boolean isEmailValid(String email)
     {
         //TODO: Replace this with your own logic
-        return email.contains("hubert") && email.length() == 6;
+        return email.contains("arbitre") && email.length() == 7;
     }
 
     private boolean isPasswordValid(String password)
     {
         //TODO: Replace this with your own logic
-        return password.length() == 2 && password.contains("ok");
+        return password.length() == 4 && password.contains("foot");
     }
 
 

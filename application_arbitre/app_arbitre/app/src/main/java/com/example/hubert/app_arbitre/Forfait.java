@@ -39,7 +39,7 @@ public class Forfait extends AppCompatActivity
         trueforfait = leforfait;
     }
 
-    //Déclare MessageFinale si il y a eu ou non un forfait
+    //Déclare à "MessageFinale" si il y a eu ou non un forfait
     public static int Gettrueforfait()
     {
         return trueforfait;

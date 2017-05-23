@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:10")) //METTRE LE TEMPS SOUHAITé
+                    if (currentTime.equals("07:00")) //METTRE LE TEMPS SOUHAITé
                     {
                         alarm.start();
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity
             showDialog(DIALOG_ALERT);
         }
     }
-
+//Lance un message si on appuie sur FORFAIT
     public void forfait(View v)
     {
             message = "Voulez vous vraiment faire Forfait ?";

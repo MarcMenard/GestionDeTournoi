@@ -22,14 +22,14 @@ import static com.example.hubert.app_arbitre.R.id.textView;
 public class Planning extends AppCompatActivity
 {
     //CONFIGURATION DES DIFFERENTS TEXTVIEW
-    private static String textTeam[] = {"a", "b", "c", "d", "e", "f", "g","h","i","j","k","l"};
+    private static String textTeam[] = {"Team 1", "Team 2", "Team 3", "Team 4", "Team 5", "Team 6", "Team 7","Team 8","Team 9","Team 10","Team 11","Team 12"};
 
     //INITIALISE LE NOM DES DEUX EQUIPES QUI SUIVRONT SUR LES ACTIVITES SUIVANTES
     private static String textTeamA = "Team X";
     private static String textTeamB = "Team Y";
 
     //CHOISIS LE NOMBRE DE MATCH NON ARBITRABLE
-    private int Matcharbitre = 4;
+    private int Matcharbitre = 2;
 
     //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES (pour les noms des equipes)
     public static String GettextTeamA() {return textTeamA;}
@@ -226,62 +226,62 @@ public class Planning extends AppCompatActivity
 
         switch (text)
         {
-            case "a":
+            case "Team 1":
             TextView TextView0 = (TextView) findViewById(R.id.textView0);
             TextView0.setText(String.valueOf(text));
                 break;
 
-            case "b":
+            case "Team 2":
             TextView TextView1 = (TextView) findViewById(R.id.textView1);
             TextView1.setText(String.valueOf(text));
                 break;
 
-            case "c":
+            case "Team 3":
             TextView TextView2 = (TextView) findViewById(R.id.textView2);
             TextView2.setText(String.valueOf(text));
                 break;
 
-            case "d":
+            case "Team 4":
             TextView TextView3 = (TextView) findViewById(R.id.textView3);
             TextView3.setText(String.valueOf(text));
                 break;
 
-            case "e":
+            case "Team 5":
             TextView TextView4 = (TextView) findViewById(R.id.textView4);
             TextView4.setText(String.valueOf(text));
                 break;
 
-            case "f":
+            case "Team 6":
             TextView TextView5 = (TextView) findViewById(R.id.textView5);
             TextView5.setText(String.valueOf(text));
                 break;
 
-            case "g":
+            case "Team 7":
             TextView TextView6 = (TextView) findViewById(R.id.textView6);
             TextView6.setText(String.valueOf(text));
                 break;
 
-            case "h":
+            case "Team 8":
             TextView TextView7 = (TextView) findViewById(R.id.textView7);
             TextView7.setText(String.valueOf(text));
                 break;
 
-            case "i":
+            case "Team 9":
             TextView TextView8 = (TextView) findViewById(R.id.textView8);
             TextView8.setText(String.valueOf(text));
                 break;
 
-            case "j":
+            case "Team 10":
             TextView TextView9 = (TextView) findViewById(R.id.textView9);
             TextView9.setText(String.valueOf(text));
                 break;
 
-            case "k":
+            case "Team 11":
             TextView TextView10 = (TextView) findViewById(R.id.textView10);
             TextView10.setText(String.valueOf(text));
                 break;
 
-            case "l":
+            case "Team 12":
             TextView TextView11 = (TextView) findViewById(R.id.textView11);
             TextView11.setText(String.valueOf(text));
                 break;

@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,18 +32,39 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.R.attr.id;
 import static android.R.string.cancel;
+import static java.lang.Integer.parseInt;
 
 /**
  * A login screen that offers login via email/password.
@@ -50,8 +72,8 @@ import static android.R.string.cancel;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
 
-
-
+    private static String id_arbitre = "-1";
+/*
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -110,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
 //SI LE MDP ET NDC SONT CORRECT, LANCE LA PAGE SUIVANTE APRES CLIQUE DU BOUTON CONNECTION
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+       Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener
                 (new OnClickListener()
         {
@@ -118,10 +140,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View view)
             {
                     attemptLogin();
-                if (mAuthTask != null)
+               /* if (mAuthTask != null)
                 {
                     startActivity(new Intent(getApplicationContext(), Planning.class));
-                }
+                }*/
             }
         });
 
@@ -192,6 +214,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
+    String email = "";
+    String password = "";
+
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -209,8 +234,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
+        String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+
+        new DownloadTask().execute(loginUrl);
+
 
         boolean cancel = false;
         View focusView = null;
@@ -251,21 +280,100 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private class DownloadTask extends AsyncTask<String, Void, String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                return downloadContent(params[0]);
+
+            } catch (IOException e) {
+                return "Unable to retrieve data. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            id_arbitre = result;
+
+            if (!result.contains("fail"))
+            {
+                startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
+            }
+
+            Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static String getIdArbitre()
+    {
+        return id_arbitre;
+    }
+
+    /*private void testr(String result)
+    {
+        if (!result.contains("fail"))
+        {
+            startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
+        }
+
+        Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
+
+    }*/
+
+    private String downloadContent(String myurl) throws IOException
+    {
+        InputStream is = null;
+        int length = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 );
+            conn.setConnectTimeout(15000 );
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.connect();
+            int response = conn.getResponseCode();
+            Log.d(TAG, "The response is: " + response);
+            is = conn.getInputStream();
+
+            String contentAsString = convertInputStreamToString(is, length);
+            return contentAsString;
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
+
+    public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[length];
+        reader.read(buffer);
+        return new String(buffer);
+    }
 
     //DéFINIT LES MOTS DE PASSE ET UTILISATEURS
     private boolean isEmailValid(String email)
     {
         //TODO: Replace this with your own logic
-        return email.contains("hubert") && email.length() == 6;
+        return email.contains("arbitre") && email.length() == 7;
     }
 
     private boolean isPasswordValid(String password)
     {
         //TODO: Replace this with your own logic
-        return password.length() == 2 && password.contains("ok");
+        return password.length() == 4 && password.contains("foot");
     }
 
-    /**
+        /**
      * Shows the progress UI and hides the login form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -475,7 +583,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     {
 
     }
-
 
 }
 
