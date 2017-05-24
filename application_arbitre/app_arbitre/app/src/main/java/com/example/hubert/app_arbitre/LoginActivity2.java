@@ -500,7 +500,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         {
             if (!result.contains("fail"))
             {
-                startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
+                startActivity(new Intent(getApplicationContext(), MessageFinale.class));
             }
 
             Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();

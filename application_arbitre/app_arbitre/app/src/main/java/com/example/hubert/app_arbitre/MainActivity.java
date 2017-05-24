@@ -31,10 +31,26 @@ public class MainActivity extends AppCompatActivity
     private static int goalsTeamA = 0;
     private static int goalsTeamB = 0;
 
-    //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
-    private static String textTeamA = Planning.GettextTeamA();
-    private static String textTeamB = Planning.GettextTeamB();
 
+    //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
+
+
+    JSON_Planning json_planning = new JSON_Planning();
+    //private String idRencontre = json_planning.getId_rencontre();
+
+    private static String textTeamA = "";
+
+    public static void setTextTeamA(String idr)
+{
+    textTeamA = idr;
+}
+
+    private static String textTeamB = "";
+
+    public static void setTextTeamB(String idr2)
+    {
+        textTeamB = idr2;
+    }
 
     private long timeWhenStopped = 0;
     private boolean stopClicked = true;
@@ -130,13 +146,14 @@ public class MainActivity extends AppCompatActivity
         {
 
 
+
             //CHANGE D'ACTIVITé A UN MOMENT DONNé
             chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
             {
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("07:00")) //METTRE LE TEMPS SOUHAITé
+                    if (currentTime.equals("00:05")) //METTRE LE TEMPS SOUHAITé
                     {
                         alarm.start();
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
@@ -251,6 +268,7 @@ public class MainActivity extends AppCompatActivity
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
             displayTextTeamA(textTeamA);
             displayTextTeamB(textTeamB);
+
 
         alarm = MediaPlayer.create(this, R.raw.sound);
     }
@@ -378,11 +396,12 @@ public class MainActivity extends AppCompatActivity
                     {
                         goalsTeamA = 0;
                         goalsTeamB = 0;
-                        startActivity(new Intent(getApplicationContext(), Planning.class));
+                        startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
                     }
                 })
                 .setNegativeButton("Non, noon !", null)
                 .show();
     }
+
 
 }

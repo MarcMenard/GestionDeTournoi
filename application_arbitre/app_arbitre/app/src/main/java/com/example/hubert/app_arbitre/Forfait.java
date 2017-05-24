@@ -46,8 +46,8 @@ public class Forfait extends AppCompatActivity
     }
 
     //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
-    private static String textTeamA = Planning.GettextTeamA();
-    private static String textTeamB = Planning.GettextTeamB();
+    private static String textTeamA = MainActivity.GettextTeamA();
+    private static String textTeamB = MainActivity.GettextTeamB();
 
     //ATTRIBUT SERVANT POUR LES MESSAGES DE CONFIRMATION
     private java.lang.String message;

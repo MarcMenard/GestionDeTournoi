@@ -1,13 +1,17 @@
 package com.example.hubert.app_arbitre;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,6 +29,17 @@ public class JSON_Planning extends AppCompatActivity  {
     private ProgressDialog pDialog;
     private ListView lv;
     private static int urlVPl = 0;
+    private TextView tv;
+
+
+    private JSONArray tableau;
+
+
+    private String id_rencontre;
+    private String nom1;
+    private String nom2;
+    private String idRenc;
+    private String idRenc2;
 
     public static void setUrlPl(int valPl){
 
@@ -44,8 +59,29 @@ public class JSON_Planning extends AppCompatActivity  {
 
         Planning = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
+        tv = (TextView) findViewById(R.id.id_rencontre);
         new GetGroupe().execute();
 
+    }
+
+    public String getId_rencontre(){
+
+        return idRenc;
+    }
+
+    public String getNom1()
+    {
+        return nom1;
+    }
+
+    public String getNom2()
+    {
+        return nom2;
+    }
+
+    public void set_IdRencontre(String idR)
+    {
+        idRenc = idR;
     }
 
     //On utilise la class Async task pour récupérer le json en faisant une requête HTTP
@@ -81,7 +117,7 @@ public class JSON_Planning extends AppCompatActivity  {
             if (jsonStr != null) {
                 try {
 
-                    JSONArray tableau = new JSONArray(jsonStr);
+                    tableau = new JSONArray(jsonStr);
 
                     // Récupération du tableau JSON (JSON Array)
 
@@ -89,8 +125,9 @@ public class JSON_Planning extends AppCompatActivity  {
                     for (int i = 0; i < tableau.length(); i++) {
                         JSONObject r = tableau.getJSONObject(i);
 
-                        String nom1 = r.getString("nom1");
-                        String nom2 = r.getString("nom2");
+                        id_rencontre = r.getString("id_rencontre");
+                        nom1 = r.getString("nom1");
+                        nom2 = r.getString("nom2");
                         String heure = r.getString("heure");
                         String terrain = r.getString("terrain");
 
@@ -99,6 +136,7 @@ public class JSON_Planning extends AppCompatActivity  {
 
                         // assignation des clés du hashmap à leur valeur
 
+                        result.put("id_rencontre", id_rencontre);
                         result.put("nom1", nom1);
                         result.put("nom2", nom2);
                         result.put("heure", heure);
@@ -149,10 +187,36 @@ public class JSON_Planning extends AppCompatActivity  {
             /**
              * Mets à jour les données JSON analysées dans une ListView
              * */
-            ListAdapter adapter = new SimpleAdapter(JSON_Planning.this, Planning, R.layout.list_item, new String[]{"nom1","nom2","heure","terrain"}, new int[]{R.id.nom_equipe1,R.id.nom_equipe2,R.id.heure,R.id.terrain});
+            ListAdapter adapter = new SimpleAdapter(JSON_Planning.this, Planning, R.layout.list_item, new String[]{"nom1","nom2","heure","terrain","id_rencontre"}, new int[]{R.id.nom_equipe1,R.id.nom_equipe2,R.id.heure,R.id.terrain,R.id.id_rencontre});
 
             lv.setAdapter(adapter);
 
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+
+                    String data=(String)parent.getItemAtPosition(position).toString();
+                    String[] parts = data.split(",");
+                    idRenc = parts[0];
+                    idRenc2 = parts[1];
+
+                    MainActivity.setTextTeamA(idRenc);
+                    MainActivity.setTextTeamB(idRenc2);
+
+                    Toast.makeText(JSON_Planning.this, data, Toast.LENGTH_LONG).show();
+
+
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    startActivity(intent);
+
+
+                }
+
+            });
         }
 
     }
