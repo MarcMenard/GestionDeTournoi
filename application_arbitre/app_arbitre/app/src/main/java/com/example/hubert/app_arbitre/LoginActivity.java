@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
         password = mPasswordView.getText().toString();
-        String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+        String loginUrl = "http://192.168.1.100/gestion_tournoi/login.php?username=" + email + "&password=" + password;
 
         new DownloadTask().execute(loginUrl);
 
@@ -310,22 +310,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    public static String getIdArbitre()
-    {
-        return id_arbitre;
-    }
-
-    /*private void testr(String result)
-    {
-        if (!result.contains("fail"))
-        {
-            startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
-        }
-
-        Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
-
-    }*/
-
     private String downloadContent(String myurl) throws IOException
     {
         InputStream is = null;
@@ -358,6 +342,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         char[] buffer = new char[length];
         reader.read(buffer);
         return new String(buffer);
+    }
+
+    public static String getIdArbitre()
+    {
+        return id_arbitre;
     }
 
     //DéFINIT LES MOTS DE PASSE ET UTILISATEURS

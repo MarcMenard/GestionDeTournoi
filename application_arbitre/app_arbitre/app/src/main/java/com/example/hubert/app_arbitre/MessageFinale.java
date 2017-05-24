@@ -86,8 +86,8 @@ public class MessageFinale extends AppCompatActivity
 
     public void retour_login(View v)
     {
-        MainActivity.SetgoalsTeamA(0);
-        MainActivity.SetgoalsTeamB(0);
+        MainActivity.SetrenigoalsTeamA(0);
+        MainActivity.SetrenigoalsTeamB(0);
         Forfait.Settrueforfait(0);
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }

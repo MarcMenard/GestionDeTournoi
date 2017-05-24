@@ -21,6 +21,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Integer.parseInt;
+
 
 public class JSON_Planning extends AppCompatActivity  {
 
@@ -40,6 +42,7 @@ public class JSON_Planning extends AppCompatActivity  {
     private String nom2;
     private String idRenc;
     private String idRenc2;
+    private String idRenc3;
 
     public static void setUrlPl(int valPl){
 
@@ -48,7 +51,7 @@ public class JSON_Planning extends AppCompatActivity  {
 
     //tableau des url permettant de récuperer les informations de la base de données via la page de script php stockée sur le serveur
 
-    String[] url = {"http://192.168.1.22/get_data_match.php?id="+ LoginActivity.getIdArbitre(), "http://192.168.1.22/get_data_match.php?id=3"};
+    String[] url = {"http://192.168.1.100/get_data_match.php?id="+ LoginActivity.getIdArbitre(), "http://192.168.1.100/get_data_match.php?id=3"};
 
     ArrayList<HashMap<String, String>> Planning;
 
@@ -64,25 +67,6 @@ public class JSON_Planning extends AppCompatActivity  {
 
     }
 
-    public String getId_rencontre(){
-
-        return idRenc;
-    }
-
-    public String getNom1()
-    {
-        return nom1;
-    }
-
-    public String getNom2()
-    {
-        return nom2;
-    }
-
-    public void set_IdRencontre(String idR)
-    {
-        idRenc = idR;
-    }
 
     //On utilise la class Async task pour récupérer le json en faisant une requête HTTP
 
@@ -199,11 +183,23 @@ public class JSON_Planning extends AppCompatActivity  {
 
                     String data=(String)parent.getItemAtPosition(position).toString();
                     String[] parts = data.split(",");
+
                     idRenc = parts[0];
                     idRenc2 = parts[1];
+                    idRenc3 = parts[2];
+
+                    for(int i = 0; i < idRenc3.length(); i++)
+                    {
+                        if(idRenc3.charAt(i) == '=')
+                        {
+                            idRenc3 = idRenc3.substring(i+1);
+                            break;
+                        }
+                    }
 
                     MainActivity.setTextTeamA(idRenc);
                     MainActivity.setTextTeamB(idRenc2);
+                    LoginActivity2.setIdRencontre(idRenc3);
 
                     Toast.makeText(JSON_Planning.this, data, Toast.LENGTH_LONG).show();
 

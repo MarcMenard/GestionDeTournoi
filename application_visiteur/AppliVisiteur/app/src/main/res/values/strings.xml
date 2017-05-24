@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">Tournoi Sixte</string>
+    <string name="classements">Classements</string>
+    <string name="plannings">Plannings</string>
+    <string name="groupe_1">Groupe 1</string>
+    <string name="groupe_2">Groupe 2</string>
+    <string name="title_activity_spinner_with_toast">SpinnerWithToastActivity</string>
+    <string name="menu_settings">Settings</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="LoginGet">Login - Get</string>
+    <string name="LoginPost">Login - Post</string>
+    <string name="App">Login Application</string>
+    <string name="LoginStatus">Login Status</string>
+    <string name="LoginRole">Login Role</string>
+    <string name="Status">Not login</string>
+    <string name="Role">Not assigned</string>
+    <string name="method">Login Method</string>
+    <string name="Choose">Choose Method</string>
+    <string name="not_assigned">Not Assigned</string>
+    <string name="groupe_1_tbl">Groupe 1</string>
+
+    <string name="rang1">1</string>
+    <string name="rang2">2</string>
+    <string name="rang3">3</string>
+    <string name="rang4">4</string>
+
+    <string name="gr1">Groupe1</string>
+    <string name="gr2">Groupe2</string>
+    <string name="gr3">Groupe3</string>
+    <string name="gr4">Groupe4</string>
+    <string name="gr5">Groupe5</string>
+
+
+    <string name="points">5</string>
+    <string name="titre1">J</string>
+    <string name="titre2">G</string>
+    <string name="titre3">N</string>
+    <string name="titre4">P</string>
+    <string name="titre5">F</string>
+    <string name="titre6">Pts</string>
+    <string name="tiretScore">-</string>
+    <string name="termine">TERMINE</string>
+
+    <string name="en_cours">EN COURS</string>
+    <string name="a_venir">A VENIR</string>
+
+    <string name="horaire_match">11 h 15</string>
+    <string name="horaire_match2">11 h 20</string>
+    <string name="horaire_match3">11 h 25</string>
+    <string name="horaire_match4">11 h 30</string>
+
+    <string name="equipe_blabla">Saint Julien de Concelles</string>
+    <string name="equipe_2">Basse Goulaine</string>
+    <string name="equipe_3">Le Loroux Bottereau</string>
+    <string name="equipe_4">La Chapelle Basse Mer</string>
+    <string name="equipe_5">Nantes</string>
+    <string name="equipe_6">Thouaré</string>
+    <string name="equipe_7">Angers</string>
+    <string name="equipe_8">La Mellinet</string>
+    <string name="equipe_9">Saint Médard de Doulon</string>
+    <string name="equipe_10">Vertou</string>
+
+    <string name="title_activity_bdd__conn">BDD_Conn</string>
+
+    <string name="url">http://192.168.1.22/get_data_equipe.php?groupe_id=9</string>
+    <string name="url2">http://192.168.1.22/get_data_equipe.php?groupe_id=10</string>
+    <string name="choisissez_votre_groupe">cliquez ici pour choisir votre groupe</string>
+    <string name="rang">Rang</string>
+    <string name="accueil_classement">Accueil classement</string>
+    <string name="planning">Planning</string>
+
+    <string-array name="url_array">
+        <item>http://192.168.1.22/get_data_equipe.php?groupe_id=9</item>
+        <item>http://192.168.1.22/get_data_equipe.php?groupe_id=10</item>
+        <item>http://192.168.1.22/get_data_equipe.php?groupe_id=11</item>
+    </string-array>
+</resources>

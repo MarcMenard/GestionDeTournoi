@@ -24,6 +24,7 @@ public class Forfait extends AppCompatActivity
 
     protected static int trueforfait = 0;
 
+
     //GET POUR LES BUTS
     public static int GetpointTeamA()
     {

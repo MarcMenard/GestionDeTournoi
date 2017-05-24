@@ -61,10 +61,28 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
 
+    private static String idRencontre;
+
+    public static void setIdRencontre(String idr3)
+    {
+        idRencontre = idr3;
+    }
+
+
     protected int pointTeamA = 0;
     protected int pointTeamB = 0;
 
-//ON REPREND LES POITNS DE LA FIN DU MATCH (MAINACTIVITY)
+    public static void SetgoalsTeamB (int goalsTB)
+    {
+        goalsTeamB = goalsTB;
+    }
+
+    public static void SetgoalsTeamA (int goalsTA)
+    {
+        goalsTeamA = goalsTA;
+    }
+
+//ON REPREND LES POINTS DE LA FIN DU MATCH (MAINACTIVITY)
     private static int goalsTeamA = MainActivity.GetgoalsTeamA();
     private static int goalsTeamB = MainActivity.GetgoalsTeamB();
 
@@ -151,8 +169,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
                     String currentTime = chronometer.getText().toString();
                     if (currentTime.equals("05:00")) //METTRE LE TEMPS SOUHAITÉ
                     {
-                        MainActivity.SetgoalsTeamA(0);
-                        MainActivity.SetgoalsTeamB(0);
+                        MainActivity.SetrenigoalsTeamA(0);
+                        MainActivity.SetrenigoalsTeamB(0);
                         Forfait.Settrueforfait(0);
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     }
@@ -342,11 +360,13 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             @Override
             public void onClick(View view)
             {
-                    attemptLogin();
-                if (mAuthTask != null)
-                {
+                String insertUrl = "http://192.168.1.100/gestion_tournoi/inserer_score.php?nombre_buts_1=" + goalsTeamA + "&nombre_buts_2=" + goalsTeamB + "&points_1=" + pointTeamA + "&points_2=" + pointTeamB + "&forfait=" + forfait + "&id="+ idRencontre;
+                new SendTask().execute(insertUrl);
+                   // attemptLogin();
+
+
                     startActivity(new Intent(getApplicationContext(), MessageFinale.class));
-                }
+                
             }
         });
 
@@ -358,6 +378,24 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    private class SendTask extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                return "idRencontre : " + idRencontre +  downloadContent(params[0]);
+            } catch (IOException e) {
+                return "Unable to retrieve data. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
+        }
+    }
 
     private void populateAutoComplete()
     {
@@ -438,9 +476,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
         password = mPasswordView.getText().toString();
-        String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+       // String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
 
-        new DownloadTask().execute(loginUrl);
+        //new DownloadTask().execute(loginUrl);
 
         boolean cancel = false;
         View focusView = null;
@@ -481,7 +519,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private class DownloadTask extends AsyncTask<String, Void, String>
+    /*private class DownloadTask extends AsyncTask<String, Void, String>
     {
 
         @Override
@@ -505,7 +543,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
             Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
     private String downloadContent(String myurl) throws IOException
     {

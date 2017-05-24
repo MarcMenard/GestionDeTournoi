@@ -29,7 +29,13 @@ public class MainActivity extends AppCompatActivity
 
     //INITIALISE LES POINTS A 0
     private static int goalsTeamA = 0;
+
+
+
     private static int goalsTeamB = 0;
+
+
+
 
 
     //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
@@ -41,9 +47,9 @@ public class MainActivity extends AppCompatActivity
     private static String textTeamA = "";
 
     public static void setTextTeamA(String idr)
-{
-    textTeamA = idr;
-}
+    {
+        textTeamA = idr;
+    }
 
     private static String textTeamB = "";
 
@@ -77,6 +83,17 @@ public class MainActivity extends AppCompatActivity
         return goalsTeamB;
     }
 
+
+    public static void SetrenigoalsTeamB (int goalsTBreni)
+    {
+        goalsTeamB = goalsTBreni;
+    }
+
+    public static void SetrenigoalsTeamA (int goalsTAreni)
+    {
+        goalsTeamA = goalsTAreni;
+    }
+
     //GET POUR LES NOMS DES DEUX EQUIPES
     public static String GettextTeamA()
     {
@@ -87,15 +104,7 @@ public class MainActivity extends AppCompatActivity
         return textTeamB;
     }
 
-    public static void SetgoalsTeamA (int goalsTA)
-    {
-        goalsTeamA = goalsTA;
-    }
 
-    public static void SetgoalsTeamB (int goalsTB)
-    {
-        goalsTeamB = goalsTB;
-    }
 
     public void onClick(View view) {
         showDialog(DIALOG_ALERT);
@@ -212,6 +221,8 @@ public class MainActivity extends AppCompatActivity
                 goalsTeamB = 0;
                 displayGoalsTeamA(goalsTeamA);
                 displayGoalsTeamB(goalsTeamB);
+                LoginActivity2.SetgoalsTeamA(goalsTeamA);
+                LoginActivity2.SetgoalsTeamB(goalsTeamB);
             }
 
             //+1 POINT à L'éQUIPE A
@@ -219,13 +230,15 @@ public class MainActivity extends AppCompatActivity
             {
                 goalsTeamA += 1;
                 displayGoalsTeamA(goalsTeamA);
+                LoginActivity2.SetgoalsTeamA(goalsTeamA);
             }
 
-            //+1 POINT à L'éQUIPE A
+            //+1 POINT à L'éQUIPE B
             if (message == "Donner un point à cette Team ?")
             {
                 goalsTeamB += 1;
                 displayGoalsTeamB(goalsTeamB);
+                LoginActivity2.SetgoalsTeamB(goalsTeamB);
             }
 
             //-1 POINT à L'éQUIPE A
@@ -237,6 +250,7 @@ public class MainActivity extends AppCompatActivity
                     goalsTeamA = 0;
                 }
                 displayGoalsTeamA(goalsTeamA);
+                LoginActivity2.SetgoalsTeamA(goalsTeamA);
             }
 
             //-1 POINT à L'éQUIPE B
@@ -248,6 +262,7 @@ public class MainActivity extends AppCompatActivity
                     goalsTeamB = 0;
                 }
                 displayGoalsTeamB(goalsTeamB);
+                LoginActivity2.SetgoalsTeamB(goalsTeamB);
             }
 
             if (message == "Voulez vous vraiment faire Forfait ?")
