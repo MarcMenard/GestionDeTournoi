@@ -33,7 +33,7 @@ public class JSON_Planning extends AppCompatActivity  {
 
     //tableau des url permettant de récuperer les informations de la base de données via la page de script php stockée sur le serveur
 
-    String[] url = {"http://192.168.1.100/get_data_planning.php", "http://192.168.1.100/get_data_planning.php"};
+    String[] url = {"http://192.168.1.102/get_data_planning.php", "http://192.168.1.102/get_data_planning.php"};
 
     ArrayList<HashMap<String, String>> Planning;
 

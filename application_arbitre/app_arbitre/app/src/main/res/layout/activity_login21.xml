@@ -138,7 +138,9 @@
                 android:text="Connexion"
                 android:layout_weight="0.2"
                 android:textStyle="bold"
-                android:elevation="0dp" />
+                android:elevation="0dp"
+                android:background="#A22C43"
+                android:textColor="#ffffff"/>
 
             <LinearLayout
                 android:background = "#77B5FE"

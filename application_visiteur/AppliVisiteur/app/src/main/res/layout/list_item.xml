@@ -9,7 +9,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#000000"
@@ -21,7 +21,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/points"
@@ -32,7 +32,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/m_jouer"
@@ -43,7 +43,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/m_gagner"
@@ -54,7 +54,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/m_nul"
@@ -65,7 +65,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/m_perdu"
@@ -76,7 +76,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/m_forfait"

@@ -69,6 +69,8 @@
                 android:layout_marginTop="50dp"
                 android:text="Connexion"
                 android:textStyle="bold"
+                android:background="#A22C43"
+                android:textColor="#ffffff"
                 android:elevation="0dp" />
 
         </LinearLayout>

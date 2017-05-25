@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
         password = mPasswordView.getText().toString();
-        String loginUrl = "http://192.168.1.100/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+        String loginUrl = "http://192.168.1.102/gestion_tournoi/login.php?username=" + email + "&password=" + password;
 
         new DownloadTask().execute(loginUrl);
 

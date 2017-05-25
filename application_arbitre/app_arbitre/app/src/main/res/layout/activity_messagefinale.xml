@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:background="#FF7F50"
+        android:background="#FFFF"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
@@ -72,20 +72,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background = "#04B404"
+        android:background = "#FFF"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_height="fill_parent"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:text="VOICI LE RESULTAT DU MATCH (confirmé et envoyé)"
-            android:textSize="20sp"
-            android:layout_width="150dp"
-            android:id="@+id/textView3" />
+
 
         <Button
             android:text="Relancer l'Application"
@@ -94,12 +87,14 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.01"
             android:id="@+id/Fin"
+            android:background="#A22C43"
+            android:textColor="#ffffff"
             android:onClick="retour_login" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:background = "#77B5FE"
+        android:background = "#FFFF"
         android:layout_height="fill_parent"
         android:layout_weight="0.2"
         android:orientation="horizontal"

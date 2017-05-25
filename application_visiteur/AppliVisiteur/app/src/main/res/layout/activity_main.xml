@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="20dp"
-                android:background="#A22C43"
                 android:text="@string/classements"
+                android:background="#A22C43"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 

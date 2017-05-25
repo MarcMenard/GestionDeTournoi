@@ -360,7 +360,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             @Override
             public void onClick(View view)
             {
-                String insertUrl = "http://192.168.1.100/gestion_tournoi/inserer_score.php?nombre_buts_1=" + goalsTeamA + "&nombre_buts_2=" + goalsTeamB + "&points_1=" + pointTeamA + "&points_2=" + pointTeamB + "&forfait=" + forfait + "&id="+ idRencontre;
+                String insertUrl = "http://192.168.1.102/gestion_tournoi/inserer_score.php?nombre_buts_1=" + goalsTeamA + "&nombre_buts_2=" + goalsTeamB + "&points_1=" + pointTeamA + "&points_2=" + pointTeamB + "&forfait=" + forfait + "&id="+ idRencontre;
                 new SendTask().execute(insertUrl);
                    // attemptLogin();
 

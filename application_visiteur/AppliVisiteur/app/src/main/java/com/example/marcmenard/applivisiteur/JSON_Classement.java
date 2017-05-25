@@ -34,7 +34,7 @@ public class JSON_Classement extends AppCompatActivity  {
 
     //tableau des url permettant de récuperer les informations de la base de données via la page de script php stockée sur le serveur
 
-    String[] url = {"http://192.168.1.100/get_data_equipe.php?groupe_id=1","http://192.168.1.100/get_data_equipe.php?groupe_id=2","http://192.168.1.100/get_data_equipe.php?groupe_id=3","http://192.168.1.100/get_data_equipe.php?groupe_id=4","http://192.168.1.100/get_data_equipe.php?groupe_id=5","http://192.168.1.100/get_data_equipe.php?groupe_id=6","http://192.168.1.100/get_data_equipe.php?groupe_id=7","http://192.168.1.100/get_data_equipe.php?groupe_id=8"};
+    String[] url = {"http://192.168.1.102/get_data_equipe.php?groupe_id=1","http://192.168.1.102/get_data_equipe.php?groupe_id=2","http://192.168.1.102/get_data_equipe.php?groupe_id=3","http://192.168.1.102/get_data_equipe.php?groupe_id=4","http://192.168.1.102/get_data_equipe.php?groupe_id=5","http://192.168.1.102/get_data_equipe.php?groupe_id=6","http://192.168.1.102/get_data_equipe.php?groupe_id=7","http://192.168.1.102/get_data_equipe.php?groupe_id=8"};
 
     ArrayList<HashMap<String, String>> Groupe;
 

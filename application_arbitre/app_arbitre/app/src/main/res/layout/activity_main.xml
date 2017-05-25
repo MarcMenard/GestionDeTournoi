@@ -40,6 +40,7 @@
         <Button
             android:layout_width="70dp"
             android:layout_height="fill_parent"
+            android:layout_gravity="center"
             android:layout_weight="0.2"
             android:onClick="addGoalForTeamA"
             android:text="+1 But"
@@ -47,11 +48,13 @@
 
         <Button
             android:layout_width="70dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="0.2"
             android:onClick="addFoulForTeamA"
             android:text="-1 But"
-            android:id="@+id/button" />
+            android:id="@+id/button"
+            />
     </LinearLayout>
 
 
@@ -89,7 +92,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="0.2"
                 android:id="@+id/start_button"
-                android:onClick="startButtonClick" />
+                android:onClick="startButtonClick"
+        android:background="#A22C43"
+        android:textColor="#ffffff"/>
 
 
     <Button
@@ -124,7 +129,9 @@
             android:layout_weight="0.2"
             android:onClick="forfait"
             android:text="Forfait"
-            android:id="@+id/button15"/>
+            android:id="@+id/button15"
+            android:background="#A22C43"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
     <LinearLayout
@@ -158,6 +165,7 @@
                 <Button
                     android:layout_width="70dp"
                     android:layout_height="fill_parent"
+                    android:layout_gravity="center"
                     android:onClick="addGoalForTeamB"
                     android:text="+1 But"
                     android:layout_weight="0.2"
@@ -165,7 +173,8 @@
 
                 <Button
                     android:layout_width="70dp"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="0.2"
                     android:onClick="addFoulForTeamB"
                     android:text="-1 But" />

@@ -30,7 +30,9 @@
             android:layout_weight="0.2"
             android:onClick="Boutton1"
             android:text="Déclaration Forfait"
-            android:id="@+id/button1"/>
+
+            android:id="@+id/button1"
+            />
 
     </LinearLayout>
 
