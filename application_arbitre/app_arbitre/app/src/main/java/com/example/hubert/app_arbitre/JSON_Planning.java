@@ -197,12 +197,27 @@ public class JSON_Planning extends AppCompatActivity  {
                         }
                     }
 
+                    for(int i = 0; i < idRenc.length(); i++)
+                    {
+                        if(idRenc.charAt(i) == '=')
+                        {
+                            idRenc = idRenc.substring(i+1);
+                            break;
+                        }
+                    }
+
+                    for(int i = 0; i < idRenc2.length(); i++)
+                    {
+                        if(idRenc2.charAt(i) == '=')
+                        {
+                            idRenc2 = idRenc2.substring(i+1);
+                            break;
+                        }
+                    }
+
                     MainActivity.setTextTeamA(idRenc);
                     MainActivity.setTextTeamB(idRenc2);
                     LoginActivity2.setIdRencontre(idRenc3);
-
-                    Toast.makeText(JSON_Planning.this, data, Toast.LENGTH_LONG).show();
-
 
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);

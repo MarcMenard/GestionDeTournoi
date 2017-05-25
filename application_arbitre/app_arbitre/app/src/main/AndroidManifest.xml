@@ -58,7 +58,10 @@
             android:label="@string/title_activity_planning"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".JSON_Planning"></activity>
+        <activity android:name=".JSON_Planning"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

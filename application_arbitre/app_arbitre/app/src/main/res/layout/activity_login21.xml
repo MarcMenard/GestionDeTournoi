@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/login_background5"
     android:icon="@mipmap/icone"
     android:layout_weight="0.2"
     tools:context="com.example.hubert.app_arbitre.LoginActivity2">

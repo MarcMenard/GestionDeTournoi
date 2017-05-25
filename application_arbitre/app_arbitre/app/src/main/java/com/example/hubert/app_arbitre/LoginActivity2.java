@@ -366,7 +366,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
 
 
                     startActivity(new Intent(getApplicationContext(), MessageFinale.class));
-                
+
             }
         });
 
@@ -393,7 +393,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         @Override
         protected void onPostExecute(String result)
         {
-            Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
+            //Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
         }
     }
 

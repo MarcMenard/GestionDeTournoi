@@ -17,7 +17,7 @@
         android:stretchColumns="*" android:background="#ffffff"
         android:id="@+id/tableLayoutgr1">
 
-        <TableRow android:background="#000000">
+        <TableRow android:background="#ffffff">
 
             <ListView
                 android:layout_width="0dp"

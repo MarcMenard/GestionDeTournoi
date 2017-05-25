@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.hubert.app_arbitre.MainActivity"
-    android:background="@drawable/login_background5">
+    >
 
 
     <LinearLayout

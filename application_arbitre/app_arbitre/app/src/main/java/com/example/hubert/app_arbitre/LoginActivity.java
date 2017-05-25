@@ -306,7 +306,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
             }
 
-            Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
+
         }
     }
 
