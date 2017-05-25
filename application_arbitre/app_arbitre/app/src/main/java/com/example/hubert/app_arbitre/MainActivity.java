@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("00:05")) //METTRE LE TEMPS SOUHAITé
+                    if (currentTime.equals("08:00")) //METTRE LE TEMPS SOUHAITé
                     {
                         alarm.start();
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
