@@ -44,14 +44,16 @@ public class JSON_Planning extends AppCompatActivity  {
     private String idRenc2;
     private String idRenc3;
 
-    public static void setUrlPl(int valPl){
+    /*
+    public static void setUrlPl(int valPl)
+    {
 
         urlVPl = valPl;
-    }
+    }*/
 
     //tableau des url permettant de récuperer les informations de la base de données via la page de script php stockée sur le serveur
 
-    String[] url = {"http://192.168.1.102/get_data_match.php?id="+ LoginActivity.getIdArbitre(), "http://192.168.1.102/get_data_match.php?id=3"};
+    String[] url = {"http://192.168.1.21/get_data_match.php?id="+ LoginActivity.getIdArbitre(), "http://192.168.1.21/get_data_match.php?id=3"};
 
     ArrayList<HashMap<String, String>> Planning;
 
@@ -73,7 +75,8 @@ public class JSON_Planning extends AppCompatActivity  {
     private class GetGroupe extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
 
             // Fenêtre informant l'utilisateur que les données sont en cours de récupération
@@ -119,7 +122,6 @@ public class JSON_Planning extends AppCompatActivity  {
                         HashMap<String, String> result = new HashMap<>();
 
                         // assignation des clés du hashmap à leur valeur
-
                         result.put("id_rencontre", id_rencontre);
                         result.put("nom1", nom1);
                         result.put("nom2", nom2);
@@ -134,7 +136,8 @@ public class JSON_Planning extends AppCompatActivity  {
                     Log.e(TAG, "Erreur d'analyse du JSON : " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
-                        public void run() {
+                        public void run()
+                        {
                             Toast.makeText(getApplicationContext(),
                                     "Erreur d'analyse du JSON : " + e.getMessage(),
                                     Toast.LENGTH_LONG)
@@ -149,7 +152,7 @@ public class JSON_Planning extends AppCompatActivity  {
                     @Override
                     public void run() {
                         Toast.makeText(getApplicationContext(),
-                                "Impossible de récupérer le JSON du serveur. Vérifier le LogCat, erreurs possibles!",
+                                "Impossible de se connecter, vérifier la Wi-fi",
                                 Toast.LENGTH_LONG)
                                 .show();
                     }
@@ -161,11 +164,11 @@ public class JSON_Planning extends AppCompatActivity  {
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Void result)
+        {
             super.onPostExecute(result);
 
             //ferme la fenêtre de dialogue si elle est ouverte
-
             if (pDialog.isShowing())
                 pDialog.dismiss();
             /**

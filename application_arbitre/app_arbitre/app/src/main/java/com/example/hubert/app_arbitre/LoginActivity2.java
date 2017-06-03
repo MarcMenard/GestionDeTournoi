@@ -82,16 +82,22 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         goalsTeamA = goalsTA;
     }
 
-//ON REPREND LES POINTS DE LA FIN DU MATCH (MAINACTIVITY)
+    //ON REPREND LES POINTS DE LA FIN DU MATCH (MAINACTIVITY)
     private static int goalsTeamA = MainActivity.GetgoalsTeamA();
     private static int goalsTeamB = MainActivity.GetgoalsTeamB();
 
-//ON RéUTILISE LE NOM DES DEUX éQUIPE DU MATCH (MAINACTIVITY)
+    //ON RéUTILISE LE NOM DES DEUX éQUIPE DU MATCH (MAINACTIVITY)
     private static String textTeamA = MainActivity.GettextTeamA();
     private static String textTeamB = MainActivity.GettextTeamB();
 
     //Pour savoir si il y a eu forfait
     private int forfait = Forfait.Gettrueforfait();
+
+    private int victoireTA;
+    private int victoireTB;
+    private int defaiteTA;
+    private int defaiteTB;
+    private int nul;
 
     //GET PERMETTANT AU AUTRES ACTIVITE DE REPRENDRE SES DONNEES
 
@@ -118,7 +124,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     //ATTRIBUT POUR LE CHRONOMETRE
     private Chronometer chronometer;
 
-//ATTRIBUT SERVANT POUR LES MESSAGES DE CONFIRMATION
+    //ATTRIBUT SERVANT POUR LES MESSAGES DE CONFIRMATION
     private java.lang.String message;
     private java.lang.String message2;
 
@@ -178,7 +184,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             });
 
 
-           //LE CHRONOMETRE SE LANCE
+            //LE CHRONOMETRE SE LANCE
             if (message == "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores")
             {
                 chronometer.start();
@@ -239,7 +245,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]
             {
-            "foo@example.com:hello", "bar@example.com:world"
+                    "foo@example.com:hello", "bar@example.com:world"
             };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -278,49 +284,63 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
             {
                 pointTeamA = 4;
                 pointTeamB = 1;
+                victoireTA = 1;
+                victoireTB = 0;
+                defaiteTA = 0;
+                defaiteTB = 1;
+                nul = 0;
             }
 
             if (goalsTeamA < goalsTeamB)
             {
                 pointTeamA = 1;
                 pointTeamB = 4;
+                victoireTA = 0;
+                victoireTB = 1;
+                defaiteTA = 1;
+                defaiteTB = 0;
+                nul = 0;
             }
 
             if (goalsTeamA == goalsTeamB)
             {
                 pointTeamA = 2;
                 pointTeamB = 2;
-            }
-
-            if (goalsTeamA < goalsTeamB)
-            {
-                pointTeamA = 1;
-                pointTeamB = 4;
+                victoireTA = 0;
+                victoireTB = 0;
+                defaiteTA = 0;
+                defaiteTB = 0;
+                nul = 1;
             }
         }
-        else {
+        else
+        {
             goalsTeamA = 0;
             goalsTeamB = 0;
             pointTeamA = Forfait.GetpointTeamA();
             pointTeamB = Forfait.GetpointTeamB();
+            victoireTA = 0;
+            victoireTB = 0;
+            defaiteTA = 0;
+            defaiteTB = 0;
+            nul = 0;
 
             //DÉSACTIVE LES BOUTONS SI FORFAIT
             findViewById(R.id.button).setEnabled(false);
             findViewById(R.id.button2).setEnabled(false);
             findViewById(R.id.button3).setEnabled(false);
             findViewById(R.id.button4).setEnabled(false);
-
         }
 
 
 
         //INITIALISE LES CHANGEMENTS DES POINTS(VIS A VIS DE 0) DES DEUX EQUIPES
-            displayGoalsTeamA(goalsTeamA);
-            displayGoalsTeamB(goalsTeamB);
+        displayGoalsTeamA(goalsTeamA);
+        displayGoalsTeamB(goalsTeamB);
 
         //INITIALISE LES CHANGEMENTS DU NOM DES DEUX éQUIPES(VIS A VIS DU DéFAUT)
-            displayTextTeamA(textTeamA);
-            displayTextTeamB(textTeamB);
+        displayTextTeamA(textTeamA);
+        displayTextTeamB(textTeamB);
 
 
 
@@ -329,9 +349,9 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         //BOUCLE S'ASSURANT QU'UN MESSAGE S'AFFICHE AUTOMATIQUEMENT, APPELLE ENSUITE LE CHRONOMETRE
         while(premiermessage == true)
         {
-                message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
-                showDialog(DIALOG_ALERT);
-                premiermessage = false;
+            message = "Vous avez 5 minutes pour rentrer de nouveau votre mot de passe et votre nom d'utilisateur ansi que de confirmer les scores";
+            showDialog(DIALOG_ALERT);
+            premiermessage = false;
         }
 
 
@@ -356,19 +376,18 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener
                 (new OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                String insertUrl = "http://192.168.1.102/gestion_tournoi/inserer_score.php?nombre_buts_1=" + goalsTeamA + "&nombre_buts_2=" + goalsTeamB + "&points_1=" + pointTeamA + "&points_2=" + pointTeamB + "&forfait=" + forfait + "&id="+ idRencontre;
-                new SendTask().execute(insertUrl);
-                   // attemptLogin();
+                {
 
 
-                    startActivity(new Intent(getApplicationContext(), MessageFinale.class));
-
-            }
-        });
+                    @Override
+                    public void onClick(View view)
+                    {
+                        String insertUrl = "http://192.168.1.21/gestion_tournoi/inserer_score.php?nombre_buts_1=" + goalsTeamA + "&nombre_buts_2=" + goalsTeamB + "&points_1=" + pointTeamA + "&points_2=" + pointTeamB + "&forfait=" + forfait + "&victoire_1=" + victoireTA + "&victoire_2=" + victoireTB + "&defaite_1=" + defaiteTA + "&defaite_2=" + defaiteTB + "&nul=" + nul + "&id="+ idRencontre;
+                        new SendTask().execute(insertUrl);
+                        // attemptLogin();
+                        startActivity(new Intent(getApplicationContext(), MessageFinale.class));
+                    }
+                });
 
 
         mLoginFormView = findViewById(R.id.login_form);
@@ -393,7 +412,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         @Override
         protected void onPostExecute(String result)
         {
-            //Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity2.this, result, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -476,7 +495,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
         password = mPasswordView.getText().toString();
-       // String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+        // String loginUrl = "http://192.168.1.22/gestion_tournoi/login.php?username=" + email + "&password=" + password;
 
         //new DownloadTask().execute(loginUrl);
 
@@ -728,8 +747,8 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     {
         String[] PROJECTION =
                 {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+                        ContactsContract.CommonDataKinds.Email.ADDRESS,
+                        ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
                 };
 
         int ADDRESS = 0;
@@ -826,7 +845,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
     }
 
 
-//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addGoalForTeamA(View view)
     {
         message = "Donner un point à cette équipe ?";
@@ -834,7 +853,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         showDialog(DIALOG_ALERT);
     }
 
-//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION DONNANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addGoalForTeamB(View view)
     {
         message = "Donner un point à cette Team ?";
@@ -842,7 +861,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         showDialog(DIALOG_ALERT);
     }
 
-//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE A, AU CLICK DU BOUTON
     public void addFoulForTeamA(View view)
     {
         message = "Enlever un point à cette équipe ?";
@@ -850,7 +869,7 @@ public class LoginActivity2 extends AppCompatActivity implements LoaderCallbacks
         showDialog(DIALOG_ALERT);
     }
 
-//LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
+    //LANCE UN MESSAGE ET PERMET D'UTILISER LA FONCTION ENLEVANT UN POINT A L'EQUIPE B, AU CLICK DU BOUTON
     public void addFoulForTeamB(View view)
     {
         message = "Enlever un point à cette Team ?";

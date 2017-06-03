@@ -3,9 +3,12 @@ package com.example.hubert.app_arbitre;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -72,6 +75,7 @@ import static java.lang.Integer.parseInt;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>
 {
 
+
     private static String id_arbitre = "-1";
 /*
 
@@ -104,6 +108,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private GoogleApiClient client;
 
 
+    //TEST LA WIFI
+    private boolean isNetworkAvailable() {
+        ConnectivityManager manager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        boolean isAvailable = false;
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Network is present and connected
+            isAvailable = true;
+            Toast.makeText(getApplicationContext(),
+                    "Tu es connecté",
+                    Toast.LENGTH_LONG)
+                    .show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),
+                    "Pas de connexion",
+                    Toast.LENGTH_LONG)
+                    .show();
+        }
+        return isAvailable;
+    }
+
+
     //LA FONCTION PRINCIPALE
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -113,6 +142,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+
+        //Test la Wifi
+        isNetworkAvailable();
 
         mPasswordView = (EditText) findViewById(R.id.password);
 
@@ -140,10 +173,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View view)
             {
                     attemptLogin();
-               /* if (mAuthTask != null)
-                {
-                    startActivity(new Intent(getApplicationContext(), Planning.class));
-                }*/
             }
         });
 
@@ -236,7 +265,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
         password = mPasswordView.getText().toString();
-        String loginUrl = "http://192.168.1.102/gestion_tournoi/login.php?username=" + email + "&password=" + password;
+
+        String loginUrl = "http://192.168.1.21/gestion_tournoi/login.php?username=" + email        + "&password=" + password;
 
         new DownloadTask().execute(loginUrl);
 
@@ -244,25 +274,39 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE MDP
-        if (!isPasswordValid(password))
+
+
+        //  AFFICHE MESSAGE D'ERREUR SI AUCUN MOT DE PASSE N'EST MIS
+        if (TextUtils.isEmpty(password))
         {
-            mPasswordView.setError("Mot de passe incorrect");
+            mPasswordView.setError("Mot de passe Requis");
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE COMPTE
+        //  AFFICHE MESSAGE D'ERREUR SI AUCUN NOM DE COMPTE N'EST MIS
         if (TextUtils.isEmpty(email))
         {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+            mEmailView.setError("Nom de Compte Requis");
             focusView = mEmailView;
             cancel = true;
         }
+
+
+        // Check for a valid password, if the user entered one. AFFICHE LES MESSAGE EN CAS D'ERREUR SUR LE MDP
+      /* if (!isPasswordValid(password))
+        {
+            mPasswordView.setError("Mot de passe incorrect");
+            focusView = mPasswordView;
+            cancel = true;
+        }*/
+
+        /*else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        }*/
+
 
         if (cancel)
         {
@@ -301,12 +345,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         {
             id_arbitre = result;
 
+
             if (!result.contains("fail"))
             {
                 startActivity(new Intent(getApplicationContext(), JSON_Planning.class));
             }
-
-
+            else
+            {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                Toast.makeText(getApplicationContext(),
+                        "Erreur d'identifiants !",
+                        Toast.LENGTH_LONG)
+                        .show();
+                mPasswordView.setError("Mot de passe manquant");
+                mEmailView.setError("Nom de compte manquant");
+            }
         }
     }
 
@@ -356,6 +409,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return email.contains("arbitre") && email.length() == 7;
     }
 
+
     private boolean isPasswordValid(String password)
     {
         //TODO: Replace this with your own logic
@@ -365,6 +419,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         /**
      * Shows the progress UI and hides the login form.
      */
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show)
     {

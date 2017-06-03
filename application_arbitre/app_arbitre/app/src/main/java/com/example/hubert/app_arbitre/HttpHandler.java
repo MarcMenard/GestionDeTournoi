@@ -16,15 +16,19 @@ public class HttpHandler {
 
     private static final String TAG = HttpHandler.class.getSimpleName();
 
-    public HttpHandler() {
-    }
+    public HttpHandler()
+    {
 
-    public String makeServiceCall(String reqUrl) {
+    }
+//Effectue une requetes sur une adresse internet et r"cupère une réponse
+    public String makeServiceCall(String reqUrl)
+    {
         String response = null;
         try {
             URL url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+
             // read the response
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);

@@ -29,34 +29,26 @@ public class MainActivity extends AppCompatActivity
 
     //INITIALISE LES POINTS A 0
     private static int goalsTeamA = 0;
-
-
-
     private static int goalsTeamB = 0;
 
 
-
-
-
     //VA RECHERCHER LE NOM DES DEUX EQUIPES DU PLANNING
-
-
     JSON_Planning json_planning = new JSON_Planning();
-    //private String idRencontre = json_planning.getId_rencontre();
 
+    //On INITIALISE LE NOM DES DEUX eQUIPE SLON LE CHOIX FAIT DANS JSON_PLANNING
     private static String textTeamA = "";
-
     public static void setTextTeamA(String idr)
     {
         textTeamA = idr;
     }
 
     private static String textTeamB = "";
-
     public static void setTextTeamB(String idr2)
     {
         textTeamB = idr2;
     }
+
+
 
     private long timeWhenStopped = 0;
     private boolean stopClicked = true;
@@ -162,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                 public void onChronometerTick(Chronometer chronometer)
                 {
                     String currentTime = chronometer.getText().toString();
-                    if (currentTime.equals("08:00")) //METTRE LE TEMPS SOUHAITé
+                    if (currentTime.equals("00:10")) //METTRE LE TEMPS SOUHAITé
                     {
                         alarm.start();
                         startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
