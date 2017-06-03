@@ -1,0 +1,8 @@
+tournoi_groupe:
+    resource: "@TournoiBundle/Controller/GroupeController.php"
+    type:     annotation
+
+tournoi:
+    resource: "@TournoiBundle/Resources/config/routing.yml"
+    prefix:   /
+

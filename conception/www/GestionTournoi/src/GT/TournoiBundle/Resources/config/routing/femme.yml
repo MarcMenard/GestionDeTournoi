@@ -1,0 +1,4 @@
+femmes_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Femme:index" }
+    methods:  GET

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>Rencontres</title>
+    <h1 class="text-primary text-center">Rencontres</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Terrain</th>
+                <th>Rang planning</th>
+                <th>Heure</th>
+                <th>Type de match</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rencontre in rencontres %}
+            <tr>
+                <td><a href="{{ path('rencontres_show', { 'id': rencontre.id }) }}">{{ rencontre.id }}</a></td>
+                <td>{{ rencontre.terrain }}</td>
+                <td>{{ rencontre.rangPlanning }}</td>
+                <td>{% if rencontre.heure %}{{ rencontre.heure|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ rencontre.typeMatch }}</td>
+                <td>
+                    <ul>
+                        <a class="btn btn-success" href="{{ path('rencontres_show', { 'id': rencontre.id }) }}">Voir</a>
+                        <a class="btn btn-warning" href="{{ path('rencontres_edit', { 'id': rencontre.id }) }}">Editer</a>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div align="center">
+            <a class="btn btn-default" href="{{ path('rencontres_new') }}">Créer nouvelle rencontre</a>
+    </div>
+{% endblock %}

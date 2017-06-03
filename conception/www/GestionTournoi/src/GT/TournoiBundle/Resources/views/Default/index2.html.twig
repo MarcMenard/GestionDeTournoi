@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Accueil</title>
+        <div class="page-header">
+           <h1>Accueil Tournoi <small>Féminin</small></h1>
+        </div>
+        <link rel="stylesheet" href="{{ asset('libs/bootstrap-3.3.7-dist/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <script src="{{ asset('libs/bootstrap-3.3.7-dist/js/jquery.js') }}"></script>
+        <script src="{{ asset('libs/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+
+        
+        <ul class="nav nav-tabs">
+          <li><a href="{{ path('hommes_index')}}">Homme</a></li>
+          <li  class="active"><a href="{{ path('femmes_index')}}">Femme</a></li>
+          <li><a href="{{ path('rencontres_planning')}}">Planning</a></li>
+        </ul>
+           {{ render(controller("TournoiBundle:Phase:index")) }}        
+           {{ render(controller("TournoiBundle:Groupe:index")) }}
+    </body>
+</html>

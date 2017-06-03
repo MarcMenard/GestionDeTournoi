@@ -1,0 +1,24 @@
+equipes_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Equipe:index" }
+    methods:  GET
+
+equipes_show:
+    path:     /{id}/show
+    defaults: { _controller: "TournoiBundle:Equipe:show" }
+    methods:  GET
+
+equipes_new:
+    path:     /new
+    defaults: { _controller: "TournoiBundle:Equipe:new" }
+    methods:  [GET, POST]
+
+equipes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TournoiBundle:Equipe:edit" }
+    methods:  [GET, POST]
+
+equipes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TournoiBundle:Equipe:delete" }
+    methods:  DELETE

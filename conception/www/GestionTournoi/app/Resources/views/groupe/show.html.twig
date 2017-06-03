@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br></br>       
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+    
+    <h1 class="text text-primary text-center">Groupe {{ groupe.numero }}</h1>
+    <br></br>
+    <div class="well">
+        <h3>Classement</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">Victoire</th>
+                    <th class="text-center">Défaite</th>
+                    <th class="text-center">Nul</th>
+                    <th class="text-center">Forfait</th>
+                    <th class="text-center">Points</th>
+                    <th class="text-center">Info</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for equipe in groupe.equipes %}
+                    <td><ul>{{equipe.nom}}</ul></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><i>{{equipe.info}}</i></td>
+                    <td>
+                        <ul align="center">
+                            <a href="{{ path('groupes_edit', { 'id': groupe.id }) }}" class="btn btn-warning">éditer</a>
+                            <a  class="btn btn-danger glyphicon glyphicon-remove"  href="{{ path('groupes_supprimer', { 'id': groupe.id }) }}" ></a>                            
+                        </ul>                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>   
+        </table>
+    </div>
+            <div class="row">
+                <h3>Matchs</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Heure</th>
+                            <th class="text-center">Equipe 1</th>
+                            <th class="text-center">Score 1</th>
+                            <th class="text-center">Score 2</th>
+                            <th class="text-center">Equipe 2</th>
+                            <th class="text-center">Terrain</th>
+                            <th class="text-center">Arbitre</th>
+                            <th class="text-center">Jouée</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rencontre in groupe.rencontres %}
+                        <tr>
+                            <td align="center">{% if rencontre.heure %}{{ rencontre.heure|date('H:i') }}{% endif %}</td>
+                            <td align="center">{{ rencontre.score1.equipe.nom }}</td>
+                            <td align="center">{{ rencontre.score1.nombreButs }}</td>
+                            <td align="center">{{ rencontre.score2.nombreButs }}</td>
+                            <td align="center">{{ rencontre.score2.equipe.nom }}</td>
+                            <td align="center">{{ rencontre.terrain }}</td>
+                            <td align="center">{{ rencontre.arbitre }}</td>
+                            <td align="center">
+                                {% if rencontre.jouee == "1" %}
+                                    <p>Oui</p>
+                                    {% elseif rencontre.jouee == "0" %}
+                                        <p>Non</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>            
+        <br></br>
+    <div align="center">
+        <a class="btn btn-default" href="javascript:history.go(-1)">Retour</a>
+        <a class="btn btn-default" href="{{ path('hommes_index') }}">Accueil</a>
+        <a class="btn btn-default"  href="{{ path('equipes_new') }}">Créer équipe</a>        
+    </div>
+{% endblock %}

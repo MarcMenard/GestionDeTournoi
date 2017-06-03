@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>Planning</title>
+        <h1 class="text-primary text-center">Planning</h1>    
+                
+        <ul class="nav nav-tabs">
+          <li><a href="{{ path('hommes_index')}}" class="active">Homme</a></li>
+          <li><a href="{{ path('femmes_index')}}">Femme</a></li>
+          <li class="active"><a href="{{ path('rencontres_planning')}}">Planning</a></li>
+        </ul>
+        <br>
+            {% if app.session.flashBag.has('success') %}
+                <div class="alert alert-success">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+        </br>
+    {% endif %}
+    
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">       
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Heure</th>
+                    <th class="text-center">Équipe 1</th>
+                    <th class="text-center">Score 1</th>
+                    <th class="text-center">Score 2</th>
+                    <th class="text-center">Équipe 2</th>
+                    <th class="text-center">Terrain</th>
+                    <th class="text-center">Arbitre</th>
+                    <th class="text-center">Jouée</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rencontre in rencontres %}
+                <tr>
+                    <td align="center">{% if rencontre.heure %}{{ rencontre.heure|date('H:i') }}{% endif %}</td>           
+                    <td align="center">{{ rencontre.score1.equipe.nom }}</td>
+                    <td align="center">{{ rencontre.score1.nombreButs }}</td>
+                    <td align="center">{{ rencontre.score2.nombreButs }}</td>
+                    <td align="center">{{ rencontre.score2.equipe.nom }}</td>
+                    <td align="center">{{ rencontre.terrain }}</td>                    
+                    <td align="center">{{ rencontre.arbitre }}</td>
+                    <td align="center">
+                        {% if rencontre.jouee == "1" %}
+                            <p>Oui</p>
+                            {% elseif rencontre.jouee == "0" %}
+                                <p>Non</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            <a href="{{ path('rencontres_edit', { 'id': rencontre.id }) }}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
+                            <a class="btn btn-danger glyphicon glyphicon-remove"  href="{{ path('rencontres_supprimer', { 'id': rencontre.id }) }}" ></a>
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>            
+            
+        <div align="center">
+            <a class="btn btn-default" href="{{ path('rencontres_new') }}">Ajouter une nouvelle rencontre</a>
+            <a class="btn btn-default" href="{{ path('hommes_index') }}">Accueil</a>
+            <a class="btn btn-default" href="javascript:history.go(-1)">Retour</a>            
+            <p class="btn btn-default glyphicon glyphicon-print" onclick="imprimer_page()">
+                <script type="text/javascript">
+                    function imprimer_page()
+                    {
+                      window.print();
+                    }
+                </script>
+            </p>
+        </div>
+{% endblock %}

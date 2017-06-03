@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}  
+
+{% block body %}    
+    
+      <tbody>
+          <br></br>
+            <ul class="nav nav-pills" align="center">
+                <ul class="nav nav-tabs">
+                    <li><a href="{{ path('Phases_groupe')}}">Phase de groupe</a></li>
+                    <li><a href="{{ path('Phases_consolante')}}">Phase consolante</a></li>
+                    <li><a href="{{ path('Phases_principale')}}">Phase principale</a></li>
+                 </ul>
+      </tbody>
+        
+{% endblock %} 

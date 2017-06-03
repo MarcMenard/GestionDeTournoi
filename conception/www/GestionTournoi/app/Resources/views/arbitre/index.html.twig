@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text text-primary text-center">Liste arbitres</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Motdepasse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arbitre in arbitres %}
+            <tr>
+                <td><a href="{{ path('arbitres_show', { 'id': arbitre.id }) }}">{{ arbitre.id }}</a></td>
+                <td>{{ arbitre.nom }}</td>
+                <td>{{ arbitre.motdepasse }}</td>
+                <td>
+                    <div>
+                        <a class="btn btn-success" href="{{ path('arbitres_show', { 'id': arbitre.id }) }}">Voir</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-warning" href="{{ path('arbitres_edit', { 'id': arbitre.id }) }}">Editer</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div align="center">
+        <a class="btn btn-default" href="{{ path('arbitres_new') }}">Creer un nouvel arbitre</a>
+        <a class="btn btn-default" href="{{ path('hommes_index') }}">Accueil</a>
+    </div>
+{% endblock %}

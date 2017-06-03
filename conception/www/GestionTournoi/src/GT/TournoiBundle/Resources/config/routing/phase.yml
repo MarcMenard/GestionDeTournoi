@@ -1,0 +1,39 @@
+Phases_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Phase:index" }
+    methods:  GET
+
+Phases_show:
+    path:     /{id}/show
+    defaults: { _controller: "TournoiBundle:Phase:show" }
+    methods:  GET
+
+Phases_new:
+    path:     /new
+    defaults: { _controller: "TournoiBundle:Phase:new" }
+    methods:  [GET, POST]
+
+Phases_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TournoiBundle:Phase:edit" }
+    methods:  [GET, POST]
+
+Phases_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TournoiBundle:Phase:delete" }
+    methods:  DELETE
+
+Phases_consolante:
+    path:     /consolante
+    defaults: { _controller: "TournoiBundle:Phase:consolante" }
+    methods:  GET
+
+Phases_groupe:
+    path:     /groupe
+    defaults: { _controller: "TournoiBundle:Phase:groupe" }
+    methods:  GET
+
+Phases_principale:
+    path:     /principale
+    defaults: { _controller: "TournoiBundle:Phase:principale" }
+    methods:  GET

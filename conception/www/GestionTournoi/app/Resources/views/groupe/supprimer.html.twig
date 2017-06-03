@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <html>
+        <head>
+            <h2 class="text-center text-primary">Suppression groupe</h2>
+        </head>
+        
+        <body>
+            <h3 class="text-info text-center">Etes-vous certain de vouloir supprimer le groupe : {{ groupe.nom }} </h3>
+            <br></br>
+            <ul align="center">
+            {{ form_start(delete_form) }}
+                <input class="btn btn-success" type="submit" value="Oui, je suis certain">
+            {{ form_end(delete_form) }}
+            <br></br>
+                <a href="{{ path('accueil_index')}}" class="btn btn-danger">Non</a>
+            </ul>
+        </body>
+    </html>
+    
+    
+{% endblock %}

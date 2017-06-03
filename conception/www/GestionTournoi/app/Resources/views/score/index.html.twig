@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Scores</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombrebuts</th>
+                <th>Typevictoire</th>
+                <th>Bonus</th>
+                <th>Points</th>
+                <th>Nombrebutscontre</th>
+                <th>Forfait</th>
+                <th>Gagnantpenalty</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td><a href="{{ path('scores_show', { 'id': score.id }) }}">{{ score.id }}</a></td>
+                <td>{{ score.nombreButs }}</td>
+                <td>{{ score.typeVictoire }}</td>
+                <td>{{ score.bonus }}</td>
+                <td>{{ score.points }}</td>
+                <td>{{ score.nombreButsContre }}</td>
+                <td>{{ score.forfait }}</td>
+                <td>{{ score.gagnantPenalty }}</td>
+                <td>
+                    <ul>
+                        <a class="btn btn-success" href="{{ path('scores_show', { 'id': score.id }) }}">Voir</a>
+                        <a class="btn btn-warning" href="{{ path('scores_edit', { 'id': score.id }) }}">Editer</a>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div align="center">
+        <a class="btn btn-default" href="{{ path('scores_new') }}">Créer un nouveau score</a>
+    </div>
+{% endblock %}

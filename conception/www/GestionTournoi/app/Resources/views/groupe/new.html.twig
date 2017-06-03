@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text text-primary text-center">Creation groupe</h1>
+    <div class="well" align="center">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-success"type="submit" value="Créer" />
+        {{ form_end(form) }}
+    </div>
+    <div align="center">
+        <a class="btn btn-default" href="javascript:history.go(-1)">Retour</a>
+        <a class="btn btn-default" href="{{ path('hommes_index') }}">Accueil</a>            
+    </div>
+{% endblock %}

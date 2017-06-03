@@ -1,0 +1,4 @@
+hommes_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Homme:index" }
+    methods:  GET

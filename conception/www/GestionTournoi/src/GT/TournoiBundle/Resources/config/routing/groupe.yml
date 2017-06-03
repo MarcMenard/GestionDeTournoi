@@ -1,0 +1,29 @@
+groupes_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Groupe:index" }
+    methods:  GET
+
+groupes_show:
+    path:     /{id}/show
+    defaults: { _controller: "TournoiBundle:Groupe:show" }
+    methods:  GET
+
+groupes_new:
+    path:     /new
+    defaults: { _controller: "TournoiBundle:Groupe:new" }
+    methods:  [GET, POST]
+
+groupes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TournoiBundle:Groupe:edit" }
+    methods:  [GET, POST]
+
+groupes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TournoiBundle:Groupe:delete" }
+    methods:  DELETE
+
+groupes_supprimer:
+    path:     /{id}/supprimer
+    defaults: { _controller: "TournoiBundle:Groupe:supprimer" }
+    methods:  [GET, POST]   

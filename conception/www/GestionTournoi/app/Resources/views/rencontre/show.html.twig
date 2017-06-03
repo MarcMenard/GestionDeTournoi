@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rencontre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rencontre.id }}</td>
+            </tr>
+            <tr>
+                <th>Terrain</th>
+                <td>{{ rencontre.terrain }}</td>
+            </tr>
+            <tr>
+                <th>Rangplanning</th>
+                <td>{{ rencontre.rangPlanning }}</td>
+            </tr>
+            <tr>
+                <th>Heure</th>
+                <td>{% if rencontre.heure %}{{ rencontre.heure|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Typematch</th>
+                <td>{{ rencontre.typeMatch }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rencontres_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('rencontres_edit', { 'id': rencontre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,4 @@
+accueil_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Accueil:index" }
+    methods:  GET

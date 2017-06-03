@@ -1,0 +1,40 @@
+tournoi_Phases:
+    resource: "@TournoiBundle/Resources/config/routing/phase.yml"
+    prefix:   /Phases
+    
+tournoi_Groupes:
+    resource: "@TournoiBundle/Resources/config/routing/groupe.yml"
+    prefix:   /Groupes    
+        
+tournoi_Equipes:
+    resource: "@TournoiBundle/Resources/config/routing/equipe.yml"
+    prefix:   /Equipes
+    
+tournoi_Arbitres:
+    resource: "@TournoiBundle/Resources/config/routing/arbitre.yml"
+    prefix:   /Arbitres
+    
+tournoi_Rencontres:
+    resource: "@TournoiBundle/Resources/config/routing/rencontre.yml"
+    prefix:   /Rencontres
+    
+tournoi_Scores:
+    resource: "@TournoiBundle/Resources/config/routing/score.yml"
+    prefix:   /Scores
+
+tournoi_Femmes:
+    resource: "@TournoiBundle/Resources/config/routing/femme.yml"
+    prefix:   /Femmes
+    
+tournoi_Hommes:
+    resource: "@TournoiBundle/Resources/config/routing/homme.yml"
+    prefix:   /Hommes
+    
+tournoi_Accueil:
+    resource: "@TournoiBundle/Resources/config/routing/accueil.yml"
+    prefix:   /Accueil
+
+tournoi_homepage:
+    path:     / 
+    defaults: { _controller: TournoiBundle:Default:index }
+

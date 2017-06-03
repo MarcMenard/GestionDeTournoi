@@ -1,0 +1,24 @@
+scores_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Score:index" }
+    methods:  GET
+
+scores_show:
+    path:     /{id}/show
+    defaults: { _controller: "TournoiBundle:Score:show" }
+    methods:  GET
+
+scores_new:
+    path:     /new
+    defaults: { _controller: "TournoiBundle:Score:new" }
+    methods:  [GET, POST]
+
+scores_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TournoiBundle:Score:edit" }
+    methods:  [GET, POST]
+
+scores_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TournoiBundle:Score:delete" }
+    methods:  DELETE

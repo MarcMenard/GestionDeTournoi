@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('libs/bootstrap-3.3.7-dist/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('libs/bootstrap-3.3.7-dist/js/jquery.js') }}"></script>
+            <script src="{{ asset('libs/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+    </body  
+</html>

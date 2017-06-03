@@ -1,0 +1,34 @@
+rencontres_index:
+    path:     /
+    defaults: { _controller: "TournoiBundle:Rencontre:index" }
+    methods:  GET
+
+rencontres_show:
+    path:     /{id}/show
+    defaults: { _controller: "TournoiBundle:Rencontre:show" }
+    methods:  GET
+
+rencontres_new:
+    path:     /new
+    defaults: { _controller: "TournoiBundle:Rencontre:new" }
+    methods:  [GET, POST]
+
+rencontres_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TournoiBundle:Rencontre:edit" }
+    methods:  [GET, POST]
+
+rencontres_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TournoiBundle:Rencontre:delete" }
+    methods:  DELETE
+
+rencontres_planning:
+    path:     /planning
+    defaults: { _controller: "TournoiBundle:Rencontre:planning" }
+    methods:  GET
+    
+rencontres_supprimer:
+    path:     /{id}/supprimer
+    defaults: { _controller: "TournoiBundle:Rencontre:supprimer" }
+    methods:  [GET, POST]   

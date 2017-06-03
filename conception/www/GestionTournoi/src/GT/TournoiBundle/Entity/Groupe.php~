@@ -1,0 +1,54 @@
+<?php
+
+namespace GT\TournoiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Groupe
+ *
+ * @ORM\Table(name="groupe")
+ * @ORM\Entity(repositoryClass="GT\TournoiBundle\Repository\GroupeRepository")
+ */
+class Groupe {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GT\TournoiBundle\Entity\Phase", inversedBy="groupes")
+     */
+    private $phase;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GT\TournoiBundle\Entity\Equipe", cascade={"persist"})
+     */
+    private $equipes;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GT\TournoiBundle\Entity\Rencontre", mappedBy="groupe")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Rencontres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=45)
+     */
+    private $nom;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="numero", type="integer")
+     */
+    private $numero;
+
+}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3 class="text-primary text-center">Groupes</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Numero</th>
+                <th class="text-center">Equipes</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for groupe in groupes %}
+                <tr>
+                    <td>{{ groupe.nom }}</td>
+                    <td>{{ groupe.numero }}</td>
+                    <td>      
+                    {% for equipe in groupe.equipes %}
+                        <ul>{{equipe.nom}}</ul>
+                    {% endfor %}              
+                    {% if groupe.equipes is empty %}
+                       <p>Ce groupe ne contient pas d'équipe.</p>
+                   {% else %}
+                   {% endif %}    
+                    </td>
+                    <td>      
+                        <ul>
+                            <a href="{{ path('groupes_show', { 'id': groupe.id }) }}" class="btn btn-success">voir</a>
+                            <a href="{{ path('groupes_edit', { 'id': groupe.id }) }}" class="btn btn-warning">éditer</a>
+                            <a  class="btn btn-danger glyphicon glyphicon-remove"  href="{{ path('groupes_supprimer', { 'id': groupe.id }) }}" >   
+                            </a>                            
+                        </ul>
+                    </td>                    
+                </tr>
+            {% endfor %}
+        <br>
+            {% if app.session.flashBag.has('success') %}
+                <div class="alert alert-success">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </br>
+        </tbody>
+    </table>
+    <div align="center">
+        <a class="btn btn-default"  href="{{ path('groupes_new') }}">Créer groupe</a>
+        <a class="btn btn-default"  href="{{ path('equipes_new') }}">Créer équipe</a>
+    </div>
+{% endblock %}
